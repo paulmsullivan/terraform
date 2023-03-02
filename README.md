@@ -31,7 +31,9 @@ You’’ll need your project ID.
 
 In the example below, the project ID is “flash-nimbus-341718”.
 
-
+<img src="https://raw.githubusercontent.com/paulmsullivan/terraform/main/img/gcp-project.jpg"
+  alt="Finding a project ID from GCP console"
+  width="686" height="289">
 
  
 ## Google Cloud Platform free tier:
