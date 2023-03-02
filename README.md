@@ -36,6 +36,11 @@ In the example below, the project ID is “flash-nimbus-341718”.
   width="654" height="232">
 
  
+## Write a main.tf file to define your resources:
+
+Save this file as “main.tf” in your working directory. Setup the provider by first running “terraform init” in that directory. Then run “terraform apply” to use Terraform to create these resources.
+
+
 ## Google Cloud Platform free tier:
 
 There is a free tier of products available that includes things like 1 very small VM, etc:
