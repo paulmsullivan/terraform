@@ -25,6 +25,16 @@ https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud
 The .json file created will be used in your Terraform code to authenticate to GCP.
 
 
-## Who Uses Size Limit
+## Get your project ID to use in Terraform files
+
+You’’ll need your project ID.
+
+In the example below, the project ID is “flash-nimbus-341718”.
+
+
 
  
+## Google Cloud Platform free tier:
+
+There is a free tier of products available that includes things like 1 very small VM, etc:
+https://cloud.google.com/free
