@@ -8,6 +8,11 @@ terraform {
   }
 }
 
+variable "gcp-creds" {
+  type = string
+  default = ""
+}
+
 #
 # Credentials for Terraform to auth to GCP for operations.
 # The values set here will be inherited by the resources
