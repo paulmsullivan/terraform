@@ -1,8 +1,9 @@
 terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-      version = "4.55.0"
+  cloud {
+    organization = "paulmsullivan"
+
+    workspaces {
+      name = "gcp-lab"
     }
   }
 }
@@ -13,7 +14,8 @@ terraform {
 # below such as "project","region","zone"
 #
 provider "google" {
-  credentials = file("./creds/flash-nimbus-341718-7d09493be3ec.json")
+#  credentials = file("./creds/flash-nimbus-341718-7d09493be3ec.json")
+  credentials = var.gcp_creds
   project = "flash-nimbus-341718"
   region  = "us-central1"
   zone    = "us-central1-c"
