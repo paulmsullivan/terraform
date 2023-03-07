@@ -15,7 +15,7 @@ terraform {
 #
 provider "google" {
 #  credentials = file("./creds/flash-nimbus-341718-7d09493be3ec.json")
-  credentials = var.gcp_creds
+  credentials = var.gcp-creds
   project = "flash-nimbus-341718"
   region  = "us-central1"
   zone    = "us-central1-c"
