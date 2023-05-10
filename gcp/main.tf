@@ -34,7 +34,7 @@ resource "google_project_service" "project" {
     update = "40m"
   }
 
-  disable_disable_on_destroy = false
+  disable_on_destroy = false
 }
 
 resource "google_project_iam_custom_role" "customVMStartStopv2" {
