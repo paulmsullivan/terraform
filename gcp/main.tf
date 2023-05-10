@@ -21,7 +21,7 @@ variable "gcp-creds" {
 provider "google" {
 #  credentials = file("./creds/flash-nimbus-341718-7d09493be3ec.json")
   credentials = var.gcp-creds
-  project = "flash-nimbus-341718"
+  project = "cogent-dragon-379819"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
@@ -130,3 +130,13 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
   name = google_compute_resource_policy.daily-backup.name
   disk = google_compute_instance.paullab-vm1.name
 }
+
+#resource "google_organization_policy" "public_ip_policy" {
+#  constraint = "compute.vmExternalIpAccess"
+#
+#  list_policy {
+#    allow {
+#      values = ["projects/cogent-dragon-379819/zones/ZONE/us-west4-b/INSTANCE"]
+#    }
+#  }
+#}
