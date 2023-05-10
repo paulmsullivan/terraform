@@ -131,12 +131,12 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
   disk = google_compute_instance.paullab-vm1.name
 }
 
-#resource "google_organization_policy" "public_ip_policy" {
-#  constraint = "compute.vmExternalIpAccess"
-#
-#  list_policy {
-#    allow {
-#      values = ["projects/cogent-dragon-379819/zones/ZONE/us-west4-b/INSTANCE"]
-#    }
-#  }
-#}
+resource "google_organization_policy" "public_ip_policy" {
+  constraint = "compute.vmExternalIpAccess"
+
+  list_policy {
+    allow {
+      values = ["projects/cogent-dragon-379819/zones/ZONE/us-central1-c/INSTANCE"]
+    }
+  }
+}
