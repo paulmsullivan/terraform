@@ -41,7 +41,7 @@ resource "google_project_iam_custom_role" "customVMStartStopv2" {
   role_id     = "customVMStartStopv2"
   title       = "Compute Instance Start and Stop"
   description = "Permits starting and stopping VM Instances"
-  permissions = ["compute.instances.start", "compute.instances.stop", "compute.instances.suspend"]
+  permissions = ["compute.instances.start", "compute.instances.stop", "compute.instances.suspend", "compute.instances.update"]
 }
 
 #
