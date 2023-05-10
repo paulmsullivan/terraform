@@ -26,6 +26,10 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
+resource "google_project_services" "project" {
+  services   = ["iam.googleapis.com", "cloudresourcemanager.googleapis.com"]
+}
+
 resource "google_project_iam_custom_role" "customVMStartStopv2" {
   role_id     = "customVMStartStopv2"
   title       = "Compute Instance Start and Stop"
