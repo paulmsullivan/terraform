@@ -132,6 +132,7 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
 }
 
 resource "google_organization_policy" "public_ip_policy" {
+  org_id = "987000039256"
   constraint = "compute.vmExternalIpAccess"
 
   list_policy {
