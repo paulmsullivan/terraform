@@ -137,7 +137,7 @@ resource "google_organization_policy" "public_ip_policy" {
 
   list_policy {
     allow {
-      values = ["projects/cogent-dragon-379819/zones/ZONE/us-central1-c/INSTANCE"]
+      values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1"]
     }
   }
 }
