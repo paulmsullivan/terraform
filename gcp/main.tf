@@ -92,9 +92,9 @@ resource "google_compute_instance" "paullab-vm1" {
   machine_type = "e2-micro"
   allow_stopping_for_update = true
 
-#  resource_policies = [
-#    google_compute_resource_policy.daily-0100-stop.id
-#  ]
+  resource_policies = [
+    google_compute_resource_policy.daily-0100-stop.id
+  ]
 
   tags = ["foo", "bar"]
 
