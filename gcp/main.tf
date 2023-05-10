@@ -26,8 +26,15 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_project_services" "project" {
-  services   = ["iam.googleapis.com", "cloudresourcemanager.googleapis.com"]
+resource "google_project_service" "project" {
+  service = "iam.googleapis.com"
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+
+  disable_disable_on_destroy = false
 }
 
 resource "google_project_iam_custom_role" "customVMStartStopv2" {
