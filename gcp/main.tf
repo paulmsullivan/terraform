@@ -63,6 +63,12 @@ resource "google_compute_subnetwork" "paullab-subnetwork" {
   network       = google_compute_network.paullab-vpc.id
 }
 
+resource "google_compute_subnetwork" "paullab-subnetwork2" {
+  name          = "paullab-subnetwork2"
+  ip_cidr_range = "10.100.1.0/24"
+  network       = google_compute_network.paullab-vpc.id
+}
+
 #
 # Create a schedule that can be attached to VMs to stop at 1am daily
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy
