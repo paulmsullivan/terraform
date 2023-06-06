@@ -1,4 +1,6 @@
 #
+# added a comment to test command line git
+#
 terraform {
   cloud {
     organization = "paulmsullivan"
