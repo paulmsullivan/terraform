@@ -20,7 +20,6 @@ variable "gcp-creds" {
 # below such as "project","region","zone"
 #
 provider "google" {
-#  credentials = file("./creds/flash-nimbus-341718-7d09493be3ec.json")
   credentials = var.gcp-creds
   project = "cogent-dragon-379819"
   region  = "us-central1"
