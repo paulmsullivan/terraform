@@ -18,6 +18,7 @@ https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/install-cli
 
 Verify Terraform is installed by running: terraform -version
 
+Note: the above is all about command line Terraform
 
 ## Create a service account and retrieve the auth key for the account
 
