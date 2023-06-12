@@ -25,6 +25,7 @@ Note: the above is all about command line Terraform
 https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build#set-up-gcp
 The .json file created will be used in your Terraform code to authenticate to GCP.
 
+Add this as a var in terraform cloud
 
 ## Get your project ID to use in Terraform files
 
