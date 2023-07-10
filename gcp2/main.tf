@@ -27,7 +27,7 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_project_service" "project" {
+resource "google_project_services" "project" {
   services = ["compute.googleapis.com","iam.googleapis.com"]
 
   timeouts {
