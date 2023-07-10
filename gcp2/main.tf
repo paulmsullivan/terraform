@@ -10,7 +10,7 @@ terraform {
   }
 }
 
-variable "gcp-creds" {
+variable "gcp2-creds" {
   type = string
   default = ""
 }
