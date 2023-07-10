@@ -33,6 +33,7 @@ module "project-factory_project_services" {
   project_id = "golden-keel-392422"
  
   activate_apis = [
+    "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
   ]
