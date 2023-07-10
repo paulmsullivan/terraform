@@ -20,6 +20,12 @@ variable "gcp2-creds" {
 # The values set here will be inherited by the resources
 # below such as "project","region","zone"
 #
+provider "google" {
+  credentials = var.gcp2-creds
+  project = "golden-keel-392422"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
 provider "google-beta" {
   credentials = var.gcp2-creds
   project = "golden-keel-392422"
