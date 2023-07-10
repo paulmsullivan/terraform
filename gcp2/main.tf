@@ -28,7 +28,7 @@ provider "google" {
 }
 
 resource "google_project_service" "project" {
-  service = "iam.googleapis.com"
+  services = ["compute.googleapis.com","iam.googleapis.com"]
 
   timeouts {
     create = "30m"
