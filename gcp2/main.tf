@@ -27,15 +27,15 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_project_services" "project" {
-  services = ["compute.googleapis.com","iam.googleapis.com"]
-
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
-
-  disable_on_destroy = false
+module "project-factory_project_services" {
+  source     = "terraform-google-modules/project-factory/google//modules/project_services"
+  version    = "14.1.0"
+  project_id = "golden-keel-392422"
+ 
+  activate_apis = [
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+  ]
 }
 
 resource "google_project_iam_custom_role" "customVMStartStopv2" {
