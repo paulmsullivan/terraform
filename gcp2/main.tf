@@ -198,3 +198,21 @@ resource "google_compute_firewall" "inbound-iap-rdp" {
     ]
     target_tags = ["all-windows"]
 }
+
+## Allow incoming access to our instance via
+## port 3389, from the my home IP
+resource "google_compute_firewall" "inbound-iap-home" {
+    name        = "allow-incoming-rdp-from-home"
+    project     = "golden-keel-392422"
+    network     = "sobek-vpc"
+
+    direction = "INGRESS"
+    allow {
+        protocol = "tcp"
+        ports    = ["3389"]  
+    }
+    source_ranges = [
+        "45.30.150.51/32"
+    ]
+    target_tags = ["all-windows"]
+}
