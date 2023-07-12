@@ -46,6 +46,8 @@ module "project-factory_project_services" {
   ]
 }
 
+
+
 resource "google_project_iam_custom_role" "customVMStartStopv2" {
   role_id     = "customVMStartStopv2"
   title       = "Compute Instance Start and Stop"
@@ -151,6 +153,13 @@ resource "google_compute_instance" "sobekcm-frontend" {
 
 }
 
+resource "google_iap_tunnel_instance_iam_binding" "binding" {
+  project = "golden-keel-392422"
+  zone    = "us-central1-c"  
+  instance = google_compute_instance.sobekcm-frontend.name
+  role     = "roles/iap.tunnelResourceAccessor"
+  members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com"]
+}
 
 #
 # attach a policy (snapshot schedule etc) to a disk
