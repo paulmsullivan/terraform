@@ -113,7 +113,7 @@ resource "google_compute_resource_policy" "daily-backup" {
 
 }
 
-resource "google_compute_instance" "paullab-vm1" {
+resource "google_compute_instance" "sobekcm-frontend" {
   name         = "sobekcm-frontend"
   machine_type = "e2-standard-2"
   allow_stopping_for_update = true
@@ -150,7 +150,7 @@ resource "google_compute_instance" "paullab-vm1" {
 
 resource "google_compute_disk_resource_policy_attachment" "attachment" {
   name = google_compute_resource_policy.daily-backup.name
-  disk = google_compute_instance.sobek-frontend.name
+  disk = google_compute_instance.sobekcm-frontend.name
 }
 
 resource "google_organization_policy" "public_ip_policy" {
@@ -159,7 +159,7 @@ resource "google_organization_policy" "public_ip_policy" {
 
   list_policy {
     allow {
-      values = ["projects/golden-keel-392422/zones/us-central1-c/instances/sobek-frontend"]
+      values = ["projects/golden-keel-392422/zones/us-central1-c/instances/sobekcm-frontend"]
     }
   }
 }
