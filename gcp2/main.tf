@@ -180,3 +180,21 @@ resource "google_organization_policy" "public_ip_policy" {
     }
   }
 }
+
+## Allow incoming access to our instance via
+## port 3389, from the IAP servers
+resource "google_compute_firewall" "inbound-iap-rdp" {
+    name        = "allow-incoming-rdp-from-iap"
+    project     = "golden-keel-392422"
+    network     = "sobek-vpc"
+
+    direction = "INGRESS"
+    allow {
+        protocol = "tcp"
+        ports    = ["3389"]  
+    }
+    source_ranges = [
+        "35.235.240.0/20"
+    ]
+    target_tags = ["all-windows"]
+}
