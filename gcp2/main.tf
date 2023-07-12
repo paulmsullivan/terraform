@@ -125,7 +125,7 @@ resource "google_compute_resource_policy" "daily-backup" {
 
 resource "google_compute_instance" "sobekcm-frontend" {
   name         = "sobekcm-frontend"
-  machine_type = "e2-standard-2"
+  machine_type = "e2-standard-4"
   allow_stopping_for_update = true
 
   resource_policies = [
