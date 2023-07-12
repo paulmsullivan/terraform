@@ -151,6 +151,12 @@ resource "google_compute_instance" "sobekcm-frontend" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      metadata["windows-keys"]
+    ]
+  }
+
 }
 
 resource "google_iap_tunnel_instance_iam_binding" "binding" {
