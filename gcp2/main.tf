@@ -55,7 +55,7 @@ resource "google_project_iam_custom_role" "customVMStartStopv2" {
 
 resource "google_project_iam_member" "project" {
   project = "golden-keel-392422"
-  role    = "projects/cogent-dragon-379819/roles/customVMStartStopv2"
+  role    = "projects/golden-keel-392422/roles/customVMStartStopv2"
   member  = "serviceAccount:service-849394982270@compute-system.iam.gserviceaccount.com"
 }
 
