@@ -45,11 +45,6 @@ resource "google_project_iam_custom_role" "customVMStartStopv2" {
   permissions = ["compute.instances.start", "compute.instances.stop", "compute.instances.suspend", "compute.instances.update"]
 }
 
-resource "google_project_iam_member" "project" {
-  role    = "projects/cogent-dragon-379819/roles/customVMStartStopv2"
-  member  = "serviceAccount:service-849394982270@compute-system.iam.gserviceaccount.com"
-}
-
 #
 # Create a VPC resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
