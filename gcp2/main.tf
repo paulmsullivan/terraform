@@ -65,8 +65,8 @@ resource "google_compute_network" "sobek-vpc" {
 # Create a subnet
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
 #
-resource "google_compute_subnetwork" "vms-dmz-subnet" {
-  name          = "vms-dmz-subnet"
+resource "google_compute_subnetwork" "vms-subnet" {
+  name          = "vms-subnet"
   ip_cidr_range = "10.100.0.0/24"
   network       = google_compute_network.sobek-vpc.id
 }
@@ -113,22 +113,53 @@ resource "google_compute_resource_policy" "daily-backup" {
 
 }
 
+resource "google_compute_instance" "paullab-vm1" {
+  name         = "sobekcm-frontend"
+  machine_type = "e2-standard-2"
+  allow_stopping_for_update = true
+
+  resource_policies = [
+    google_compute_resource_policy.daily-0100-stop.id
+  ]
+
+  tags = ["frontend", "all-windows", "all-instance"]
+
+  boot_disk {
+    initialize_params {
+      image = "windows-server-2022-dc-v20230615"
+      labels = {
+        my_label = "disk0"
+      }
+    }
+  }
+
+  network_interface {
+    subnetwork = "vms-subnet"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+}
+
+
 #
 # attach a policy (snapshot schedule etc) to a disk
 #
 
-#resource "google_compute_disk_resource_policy_attachment" "attachment" {
-#  name = google_compute_resource_policy.daily-backup.name
-#  disk = google_compute_instance.paullab-vm1.name
-#}
+resource "google_compute_disk_resource_policy_attachment" "attachment" {
+  name = google_compute_resource_policy.daily-backup.name
+  disk = google_compute_instance.sobek-frontend.name
+}
 
-#resource "google_organization_policy" "public_ip_policy" {
-#  org_id = "987000039256"
-#  constraint = "compute.vmExternalIpAccess"
-#
-#  list_policy {
-#    allow {
-#      values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1"]
-#    }
-#  }
-#}
+resource "google_organization_policy" "public_ip_policy" {
+  org_id = "884179714816"
+  constraint = "compute.vmExternalIpAccess"
+
+  list_policy {
+    allow {
+      values = ["projects/golden-keel-392422/zones/us-central1-c/instances/sobek-frontend"]
+    }
+  }
+}
