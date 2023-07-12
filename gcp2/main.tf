@@ -42,6 +42,7 @@ module "project-factory_project_services" {
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
+    "iap.googleapis.com",
   ]
 }
 
