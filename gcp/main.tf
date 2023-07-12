@@ -65,7 +65,7 @@ resource "google_compute_network" "paullab-vpc" {
 #
 resource "google_compute_subnetwork" "paullab-subnetwork" {
   name          = "paullab-subnetwork"
-  ip_cidr_range = "10.100.0.0/24"
+  ip_cidr_range = "10.10.0.0/24"
   network       = google_compute_network.paullab-vpc.id
 }
 
