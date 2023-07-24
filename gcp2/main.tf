@@ -123,8 +123,8 @@ resource "google_compute_resource_policy" "daily-backup" {
 
 }
 
-resource "google_compute_instance" "sobekcm-frontend" {
-  name         = "sobekcm-frontend"
+resource "google_compute_instance" "sobek-frontend" {
+  name         = "sobek-frontend"
   machine_type = "e2-standard-2"
   allow_stopping_for_update = true
 
@@ -198,7 +198,7 @@ resource "google_compute_instance" "sobek-backend" {
 resource "google_iap_tunnel_instance_iam_binding" "binding" {
   project = "golden-keel-392422"
   zone    = "us-central1-c"  
-  instance = google_compute_instance.sobekcm-frontend.name
+  instance = google_compute_instance.sobek-frontend.name
   role     = "roles/iap.tunnelResourceAccessor"
   members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com","user:Mark.V.Sullivan@gmail.com","user:paulmsullivan@gmail.com"]
 }
@@ -217,7 +217,7 @@ resource "google_iap_tunnel_instance_iam_binding" "binding2" {
 
 resource "google_compute_disk_resource_policy_attachment" "attachment" {
   name = google_compute_resource_policy.daily-backup.name
-  disk = google_compute_instance.sobekcm-frontend.name
+  disk = google_compute_instance.sobek-frontend.name
 }
 
 resource "google_organization_policy" "public_ip_policy" {
@@ -226,7 +226,7 @@ resource "google_organization_policy" "public_ip_policy" {
 
   list_policy {
     allow {
-      values = ["projects/golden-keel-392422/zones/us-central1-c/instances/sobekcm-frontend"]
+      values = ["projects/golden-keel-392422/zones/us-central1-c/instances/sobek-frontend"]
     }
   }
 }
