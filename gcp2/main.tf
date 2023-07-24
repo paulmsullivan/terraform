@@ -192,10 +192,6 @@ resource "google_compute_instance" "sobek-backend" {
 
   network_interface {
     subnetwork = "vms-subnet"
-
-    access_config {
-      nat_ip = "None"
-    }
   }
 
   lifecycle {
