@@ -201,7 +201,7 @@ resource "google_iap_tunnel_instance_iam_binding" "binding" {
   zone    = "us-central1-c"  
   instance = google_compute_instance.sobekcm-frontend.name
   role     = "roles/iap.tunnelResourceAccessor"
-  members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com"]
+  members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com","user:Mark.V.Sullivan@gmail.com","user:paulmsullivan@gmail.com"]
 }
 
 #
