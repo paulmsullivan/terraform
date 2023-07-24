@@ -128,10 +128,6 @@ resource "google_compute_instance" "sobekcm-frontend" {
   machine_type = "e2-standard-2"
   allow_stopping_for_update = true
 
-  resource_policies = [
-    google_compute_resource_policy.daily-0100-stop.id
-  ]
-
   tags = ["frontend", "all-windows", "all-instance"]
 
   boot_disk {
@@ -174,10 +170,6 @@ resource "google_compute_instance" "sobek-backend" {
   name         = "sobek-backend"
   machine_type = "e2-standard-2"
   allow_stopping_for_update = true
-
-  resource_policies = [
-    google_compute_resource_policy.daily-0100-stop.id
-  ]
 
   tags = ["backend", "all-windows", "all-instance"]
 
