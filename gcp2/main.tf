@@ -149,9 +149,14 @@ resource "google_compute_instance" "sobekcm-frontend" {
     source = "https://www.googleapis.com/compute/v1/projects/golden-keel-392422/zones/us-central1-c/disks/disk-1-web"
   }
 
+  attached_disk {
+    mode = "READ_WRITE"
+    device_name = "disk-2-files"
+    source = "https://www.googleapis.com/compute/v1/projects/golden-keel-392422/zones/us-central1-c/disks/disk-2-files"
+  }
+
   network_interface {
     subnetwork = "vms-subnet"
-
     access_config {
       // Ephemeral public IP
     }
