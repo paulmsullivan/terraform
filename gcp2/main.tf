@@ -211,6 +211,14 @@ resource "google_iap_tunnel_instance_iam_binding" "binding" {
   members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com","user:Mark.V.Sullivan@gmail.com","user:paulmsullivan@gmail.com"]
 }
 
+resource "google_iap_tunnel_instance_iam_binding" "binding" {
+  project = "golden-keel-392422"
+  zone    = "us-central1-c"  
+  instance = google_compute_instance.sobek-backend.name
+  role     = "roles/iap.tunnelResourceAccessor"
+  members = ["user:paul.sullivan@sobekdigital.com","group:support@sobekdigital.com","user:Mark.V.Sullivan@gmail.com","user:paulmsullivan@gmail.com"]
+}
+
 #
 # attach a policy (snapshot schedule etc) to a disk
 #
