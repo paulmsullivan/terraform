@@ -159,6 +159,43 @@ resource "google_compute_instance" "sobekcm-frontend" {
 
 }
 
+resource "google_compute_instance" "sobek-backend" {
+  name         = "sobek-backend"
+  machine_type = "e2-standard-4"
+  allow_stopping_for_update = true
+
+  resource_policies = [
+    google_compute_resource_policy.daily-0100-stop.id
+  ]
+
+  tags = ["backend", "all-windows", "all-instance"]
+
+  boot_disk {
+    initialize_params {
+      image = "windows-server-2022-dc-v20230615"
+      labels = {
+        my_label = "disk0"
+      }
+    }
+  }
+
+  network_interface {
+    subnetwork = "vms-subnet"
+
+    access_config {
+      nat_ip = "None"
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      metadata["windows-keys"]
+    ]
+  }
+
+}
+
+
 resource "google_iap_tunnel_instance_iam_binding" "binding" {
   project = "golden-keel-392422"
   zone    = "us-central1-c"  
