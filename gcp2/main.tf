@@ -143,6 +143,12 @@ resource "google_compute_instance" "sobekcm-frontend" {
     }
   }
 
+  attached_disk {
+    mode = "READ_WRITE"
+    device_name = "disk-1-web"
+    source = "https://www.googleapis.com/compute/v1/projects/golden-keel-392422/zones/us-central1-c/disks/disk-1-web"
+  }
+
   network_interface {
     subnetwork = "vms-subnet"
 
