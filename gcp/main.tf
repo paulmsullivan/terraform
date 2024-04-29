@@ -115,7 +115,7 @@ resource "google_compute_instance" "paullab-vm1" {
     google_compute_resource_policy.daily-0100-stop.id
   ]
 
-  tags = ["foo1", "bar2"]
+  tags = ["all-linux","all-instance"]
 
   boot_disk {
     initialize_params {
@@ -157,4 +157,21 @@ resource "google_organization_policy" "public_ip_policy" {
       values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1"]
     }
   }
+}
+
+## Allow incoming access to our instance via
+## port 22, from the IAP servers
+resource "google_compute_firewall" "inbound-iap-ssh" {
+    name        = "allow-incoming-ssh-from-iap"
+   network      = google_compute_network.paullab-vpc.id
+
+    direction = "INGRESS"
+    allow {
+        protocol = "tcp"
+        ports    = ["22"]  
+    }
+    source_ranges = [
+        "35.235.240.0/20"
+    ]
+    target_tags = ["all-linux"]
 }
