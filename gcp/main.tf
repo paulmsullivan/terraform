@@ -106,49 +106,47 @@ resource "google_compute_resource_policy" "daily-backup" {
 
 }
 
-#resource "google_compute_instance" "paullab-vm1" {
-#  name         = "paullab-vm1"
-#  machine_type = "e2-micro"
-#  allow_stopping_for_update = true
+resource "google_compute_instance" "paullab-vm1" {
+  name         = "paullab-vm1"
+  machine_type = "e2-micro"
+  allow_stopping_for_update = true
 
-#  resource_policies = [
-#    google_compute_resource_policy.daily-0100-stop.id
-#  ]
+  resource_policies = [
+    google_compute_resource_policy.daily-0100-stop.id
+  ]
 
-#  tags = ["foo", "bar"]
+  tags = ["foo1", "bar2"]
 
-#  boot_disk {
-#    initialize_params {
-#      image = "ubuntu-2204-jammy-v20230302"
-#      labels = {
-#        my_label = "disk0"
-#      }
-#    }
-#  }
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-2204-jammy-v20230302"
+      labels = {
+        my_label = "disk0"
+      }
+    }
+  }
 
-#  network_interface {
-#    subnetwork = "paullab-subnetwork"
+  network_interface {
+    subnetwork = "paullab-subnetwork"
 
-#    access_config {
-#      // Ephemeral public IP
-#    }
-#  }
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 
-#  metadata = {
-#    foo = "bar"
-#  }
+  metadata = {
+    foo = "bar"
+  }
 
-#  metadata_startup_script = "echo hi > /test.txt"
-
-# }
+}
 
 #
 # attach a policy (snapshot schedule etc) to a disk
 #
-#resource "google_compute_disk_resource_policy_attachment" "attachment" {
-#  name = google_compute_resource_policy.daily-backup.name
-#  disk = google_compute_instance.paullab-vm1.name
-#}
+resource "google_compute_disk_resource_policy_attachment" "attachment" {
+  name = google_compute_resource_policy.daily-backup.name
+  disk = google_compute_instance.paullab-vm1.name
+}
 
 resource "google_organization_policy" "public_ip_policy" {
   org_id = "987000039256"
