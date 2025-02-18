@@ -160,6 +160,15 @@ resource "google_organization_policy" "public_ip_policy" {
   }
 }
 
+resource "google_organization_policy" "serial_port_policy" {
+  org_id     = "987000039256"
+  constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
+ 
+  boolean_policy {
+    enforced = false
+  }
+}
+
 ## Allow incoming access to our instance via
 ## port 22, from the IAP servers
 resource "google_compute_firewall" "inbound-iap-ssh" {
