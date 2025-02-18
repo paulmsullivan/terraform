@@ -155,7 +155,7 @@ resource "google_organization_policy" "public_ip_policy" {
 
   list_policy {
     allow {
-      values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1"]
+      values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1","projects/wordpress-446723/zones/us-central1-a/instances/wordpress-1-vm"]
     }
   }
 }
