@@ -165,7 +165,7 @@ resource "google_organization_policy" "serial_port_policy" {
   constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
  
   boolean_policy {
-    enforced = false
+    enforced = true
   }
 }
 
