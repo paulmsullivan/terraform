@@ -160,7 +160,7 @@ resource "google_organization_policy" "public_ip_policy" {
   }
 }
 
-resource = "google_org_policy_policy" "project_public_ip_policy" {
+resource "google_org_policy_policy" "project_public_ip_policy" {
   name  = "projects/cogent-dragon-379819/policies/compute.vmExternalIPAccess"
   parent = "projects/cogent-dragon-379819"
 
