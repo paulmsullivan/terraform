@@ -169,7 +169,7 @@ resource "google_org_policy_policy" "project_public_ip_policy" {
     reset = false
 
     rules {
-      allow_all = "TRUE"
+      allow_all = "FALSE"
     }
   }
 
