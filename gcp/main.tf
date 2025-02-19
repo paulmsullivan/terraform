@@ -165,7 +165,8 @@ resource "google_org_policy_policy" "project_public_ip_policy" {
   parent = "projects/cogent-dragon-379819"
 
   spec {
-    inherit_from_parent = true
+    inherit_from_parent = false
+    reset = false
 
     rules {
       enforce = "FALSE"
