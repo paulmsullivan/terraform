@@ -168,9 +168,9 @@ resource "google_org_policy_policy" "project_public_ip_policy" {
     inherit_from_parent = true
     reset = false
 
-    rules {
-      deny_all = "TRUE"
-    }
+#    rules {
+#      deny_all = "TRUE"
+#    }
   }
 
 }
