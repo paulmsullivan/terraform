@@ -160,6 +160,20 @@ resource "google_organization_policy" "public_ip_policy" {
   }
 }
 
+resource = "google_org_policy_policy" "project_public_ip_policy" {
+  name  = "projects/cogent-dragon-379819/policies/compute.vmExternalIPAccess"
+  parent = "projects/cogent-dragon-379819"
+
+  spec {
+    inherit_from_parent = true
+
+    rules {
+      enforce = "FALSE"
+    }
+  }
+
+}
+
 resource "google_organization_policy" "serial_port_policy" {
   org_id     = "987000039256"
   constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
