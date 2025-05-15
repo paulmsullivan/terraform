@@ -5,8 +5,8 @@ provider "google" {
 
 module "org_policy" {
   source      = "terraform-google-modules/vpc-service-controls/google"
-  parent_id   = var.parent_id
-  policy_name = var.policy_name
+  parent_id   = "987000039256"
+  policy_name = "sample-vpc-sc-permimeter"
 }
 
 module "access_level_members" {
@@ -21,7 +21,7 @@ module "regular_service_perimeter_1" {
   policy              = module.org_policy.policy_id
   perimeter_name      = "regular_perimeter_1"
   description         = "Perimeter shielding projects"
-  resources           = ["1111111"]
+  resources           = ["127799619174"]
   access_levels       = [module.access_level_members.name]
   restricted_services = ["bigquery.googleapis.com", "storage.googleapis.com"]
   shared_resources    = {
