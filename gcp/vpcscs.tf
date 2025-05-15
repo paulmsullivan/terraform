@@ -9,12 +9,12 @@ module "org_policy" {
   policy_name = "sample-vpc-sc-permimeter"
 }
 
-module "access_level_members" {
-  source  = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
-  policy  = module.org_policy.policy_id
-  name    = "terraform_members"
-  members = var.members
-}
+#module "access_level_members" {
+#  source  = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
+#  policy  = module.org_policy.policy_id
+#  name    = "terraform_members"
+#  members = var.members
+#}
 
 module "regular_service_perimeter_1" {
   source              = "terraform-google-modules/vpc-service-controls/google//modules/regular_service_perimeter"
@@ -22,7 +22,7 @@ module "regular_service_perimeter_1" {
   perimeter_name      = "regular_perimeter_1"
   description         = "Perimeter shielding projects"
   resources           = ["127799619174"]
-  access_levels       = [module.access_level_members.name]
+#  access_levels       = [module.access_level_members.name]
   restricted_services = ["bigquery.googleapis.com", "storage.googleapis.com"]
   shared_resources    = {
     all = ["11111111"]
