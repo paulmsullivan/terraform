@@ -1,7 +1,7 @@
 # vpc service controls
-provider "google" {
-  version = "~> 3.19.0"
-}
+#provider "google" {
+#  version = "~> 3.19.0"
+#}
 
 module "org_policy" {
   source      = "terraform-google-modules/vpc-service-controls/google"
