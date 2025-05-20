@@ -21,9 +21,9 @@ module "regular_service_perimeter_1" {
   policy              = module.org_policy.policy_id
   perimeter_name      = "regular_perimeter_1"
   description         = "Perimeter shielding projects"
-  resources           = ["127799619174"]
+  resources_dry_run           = ["127799619174"]
 #  access_levels       = [module.access_level_members.name]
-  restricted_services = ["bigquery.googleapis.com", "storage.googleapis.com"]
+  restricted_services_dry_run = ["bigquery.googleapis.com", "storage.googleapis.com"]
   shared_resources    = {
     all = ["11111111"]
   }
