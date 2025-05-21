@@ -18,7 +18,7 @@ resource "random_id" "random_suffix" {
 
 module "access_level_vpc_ranges" {
   source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
-  policy      = module.access_context_manager_policy.policy_id
+  policy      = module.org_policy.policy_id
   name        = "vpc_ip_address_policy"
   description = "access level for vpc ip addresses"
   vpc_network_sources = {
