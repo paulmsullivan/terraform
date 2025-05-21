@@ -1,6 +1,6 @@
 resource "google_access_context_manager_access_level" "access-level" {
-  parent = "accessPolicies/sample-vpc-sc-permimeter.name"
-  name   = "accessPolicies/sample-vpc-sc-permimeter.name/accessLevels/onprem_prod_subnets"
+  parent = "accessPolicies/sample-vpc-sc-permimeter"
+  name   = "accessPolicies/sample-vpc-sc-permimeter/accessLevels/onprem_prod_subnets"
   title  = "onprem_prod_subnets"
   basic {
     conditions {
