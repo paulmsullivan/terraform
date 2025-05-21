@@ -6,13 +6,13 @@ resource "random_id" "random_suffix" {
 
  
 
-module "access_context_manager_policy" {
-  source  = "terraform-google-modules/vpc-service-controls/google"
-  version = "~> 6.0"
- 
-  parent_id   = "987000039256"
-  policy_name = "int_test_vpc_sc_policy_${random_id.random_suffix.hex}"
-}
+#module "access_context_manager_policy" {
+#  source  = "terraform-google-modules/vpc-service-controls/google"
+#  version = "~> 6.0"
+# 
+#  parent_id   = "987000039256"
+#  policy_name = "int_test_vpc_sc_policy_${random_id.random_suffix.hex}"
+#}
 
  
 
