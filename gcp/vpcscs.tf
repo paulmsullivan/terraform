@@ -23,7 +23,7 @@ module "access_level_vpc_ranges" {
   description = "access level for vpc ip addresses"
   vpc_network_sources = {
     "vpc_paullab-vpc" = {
-      name = "paullab-vpc"
+      network_id = "paullab-vpc"
     }
   }
 
