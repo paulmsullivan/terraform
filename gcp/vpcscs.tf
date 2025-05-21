@@ -4,7 +4,7 @@ resource "google_access_context_manager_access_level" "access-level" {
   title  = "onprem_prod_subnets"
   basic {
     conditions {
-      ip_subnets = ["10.10.10.0/24"]
+      ip_subnetworks = ["10.10.10.0/24"]
     }
   }
 }
