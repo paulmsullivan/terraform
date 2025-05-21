@@ -200,8 +200,3 @@ resource "google_compute_firewall" "inbound-iap-ssh" {
     ]
     target_tags = ["all-linux"]
 }
-
-resource "google_access_context_manager_access_policy" "onprem-ips-access-policy" {
-  parent = "organizations/987000039256"
-  title  = "my second best policy"
-}
