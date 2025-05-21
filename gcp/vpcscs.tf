@@ -1,3 +1,21 @@
+ 
+
+resource "random_id" "random_suffix" {
+  byte_length = 2
+}
+
+ 
+
+module "access_context_manager_policy" {
+  source  = "terraform-google-modules/vpc-service-controls/google"
+  version = "~> 6.0"
+ 
+  parent_id   = "987000039256"
+  policy_name = "int_test_vpc_sc_policy_${random_id.random_suffix.hex}"
+}
+
+ 
+
 module "access_level_vpc_ranges" {
   source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
   policy      = module.access_context_manager_policy.policy_id
