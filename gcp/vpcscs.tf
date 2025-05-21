@@ -1,6 +1,6 @@
 resource "google_access_context_manager_access_level" "access-level" {
-  parent = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}"
-  name   = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}/accessLevels/onprem_prod_subnets"
+  parent = "accessPolicies/${google_access_context_manager_access_policy.onprem-ips-access-policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.onprem-ips-access-policy.name}/accessLevels/onprem_prod_subnets"
   title  = "onprem_prod_subnets"
   basic {
     conditions {
