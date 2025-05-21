@@ -9,12 +9,6 @@ resource "google_access_context_manager_access_level" "access-level" {
   }
 }
 
-resource "google_access_context_manager_access_policy" "onprem-ips-access-policy" {
-  parent = "organizations/987000039256"
-  title  = "my second best policy"
-}
-
-
 # vpc service controls
 #provider "google" {
 #  version = "~> 3.19.0"
