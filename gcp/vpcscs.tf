@@ -1,3 +1,20 @@
+resource "google_access_context_manager_access_level" "access-level" {
+  parent = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}"
+  name   = "accessPolicies/${google_access_context_manager_access_policy.access-policy.name}/accessLevels/onprem_prod_subnets"
+  title  = "onprem_prod_subnets"
+  basic {
+    conditions {
+      ip_subnets = ["10.10.10.0/24"]
+    }
+  }
+}
+
+resource "google_access_context_manager_access_policy" "access-policy" {
+  parent = "organizations/987000039256"
+  title  = "my best policy"
+}
+
+
 # vpc service controls
 #provider "google" {
 #  version = "~> 3.19.0"
