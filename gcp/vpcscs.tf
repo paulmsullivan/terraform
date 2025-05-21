@@ -1,18 +1,3 @@
-resource "google_access_context_manager_access_level" "access-level" {
-  parent = "accessPolicies/686487341936"
-  name   = "accessPolicies/686487341936/accessLevels/onprem_prod_subnets"
-  title  = "onprem_prod_subnets"
-  basic {
-    conditions {
-      ip_subnetworks = ["10.10.10.0/24"]
-    }
-  }
-}
-
-#resource "google_access_context_manager_access_policy" "onprem-ips-access-policy" {
-#  parent = "organizations/987000039256"
-#  title  = "my second best policy"
-#}
 
 
 # vpc service controls
