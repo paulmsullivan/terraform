@@ -1,3 +1,16 @@
+module "access_level_vpc_ranges" {
+  source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
+  policy      = module.access_context_manager_policy.policy_id
+  name        = "vpc_ip_address_policy"
+  description = "access level for vpc ip addresses"
+  vpc_network_sources = {
+    "vpc_paullab-vpc" = {
+      name = "paullab-vpc"
+    }
+  }
+
+}
+
 #resource "google_access_context_manager_access_level" "access-level" {
 #  parent = "accessPolicies/686487341936"
 #  name   = "accessPolicies/686487341936/accessLevels/onprem_prod_subnets"
