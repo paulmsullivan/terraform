@@ -31,7 +31,6 @@ module "regular_service_perimeter_1" {
   source              = "terraform-google-modules/vpc-service-controls/google//modules/regular_service_perimeter"
   policy              = module.org_policy.policy_id
   perimeter_name      = "regular_perimeter_1"
-use_explicit_dry_run_spec = true
   description         = "Perimeter shielding projects"
   resources_dry_run           = ["127799619174"]
 #  access_levels       = [module.access_level_members.name]
