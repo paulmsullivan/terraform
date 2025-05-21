@@ -1,4 +1,13 @@
-
+resource "google_access_context_manager_access_level" "access-level" {
+  parent = "accessPolicies/686487341936"
+  name   = "accessPolicies/686487341936/accessLevels/onprem_prod_subnets"
+  title  = "onprem_prod_subnets"
+  basic {
+    conditions {
+      vpc_network_sources = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
+    }
+  }
+}
 
 # vpc service controls
 #provider "google" {
