@@ -29,4 +29,29 @@ module "regular_service_perimeter_1" {
   description                 = "Perimeter shielding projects"
   resources_dry_run           = ["127799619174"]
   restricted_services_dry_run = ["bigquery.googleapis.com", "storage.googleapis.com"]
+  ingress_policies = [
+    {
+      title = "Allow Access from everywhere"
+      from = {
+        sources = {
+          access_levels = ["*"] # Allow Access from everywhere
+        },
+        identities = ["paulmsullivan@gmail.com"]
+
+      }
+      to = {
+        resources = [
+          "*"
+        ]
+        operations = {
+          "storage.googleapis.com" = {
+            methods = [
+              "google.storage.objects.get",
+              "google.storage.objects.list"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }
