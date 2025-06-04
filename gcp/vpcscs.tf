@@ -36,7 +36,7 @@ module "regular_service_perimeter_1" {
         sources = {
           access_levels = ["*"] # Allow Access from everywhere
         },
-        identities = ["paulmsullivan@gmail.com"]
+        identities = ["user:paulmsullivan@gmail.com"]
 
       }
       to = {
