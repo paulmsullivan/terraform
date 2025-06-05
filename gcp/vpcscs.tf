@@ -61,7 +61,7 @@ module "draft_main_service_perimeter" {
 
 
 resource "google_access_context_manager_service_perimeter_ingress_policy" "logging" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft_main_service_perimeter"
+  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
   title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
   ingress_from {
     identities = ["user:paulmsullivan@gmail.com"]    
