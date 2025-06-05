@@ -23,7 +23,7 @@ module "org_policy" {
 }
 
 resource "google_access_context_manager_service_perimeters" "service-perimeter" {
-  parent = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
+  parent = "accessPolicies/686487341936"
 
   service_perimeters {
     name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
@@ -37,7 +37,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
 
 
 resource "google_access_context_manager_service_perimeter_ingress_policy" "ingress_policy_0" {
-  perimeter = "${var.perimeter_name}"
+  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
   title = "ingress policy title goes here"
   ingress_from {
     identity_type = "ANY_IDENTITY"
