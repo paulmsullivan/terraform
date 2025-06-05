@@ -62,7 +62,7 @@ module "draft_main_service_perimeter" {
        title = "Allow Access from everywhere"
        from = {
          sources = {
-           access_levels = ["*"] Allow Access from everywhere
+           access_levels = ["*"]
          },
          identities = ["user:paulmsullivan@gmail.com"]
 
