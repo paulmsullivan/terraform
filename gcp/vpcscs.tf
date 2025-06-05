@@ -57,28 +57,33 @@ module "draft_main_service_perimeter" {
   restricted_services_dry_run = var.vpc_sc_services
   access_levels_dry_run = ["nonprod_public_ips"]  
 
+   ingress_policies = [
+     {
+       title = "Allow Access from everywhere"
+       from = {
+         sources = {
+           access_levels = ["*"] Allow Access from everywhere
+         },
+         identities = ["user:paulmsullivan@gmail.com"]
+
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "storage.googleapis.com" = {
+             methods = [
+               "google.storage.objects.get",
+               "google.storage.objects.list"
+             ]
+           }
+         }
+       }
+     }
+   ]
+
 }
 
 
-resource "google_access_context_manager_service_perimeter_ingress_policy" "logging" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
-  title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
-  ingress_from {
-    identities = ["user:paulmsullivan@gmail.com"]    
-    sources {
-      access_level = "*"
-    }
-  }
-  ingress_to {
-    resources = ["*"]
-    operations {
-      service_name = "pubsub.googleapis.com"
-      method_selectors {
-        method = "Publisher.Publish"
-      }
-    }
-  }
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-}
+
