@@ -58,6 +58,9 @@ module "draft_main_service_perimeter" {
   access_levels_dry_run = ["nonprod_public_ips"]  
 
    ingress_policies = [
+     #
+     # NetApp Service Access
+     #
      {
        title = "NetApp Service Access"
        from = {
@@ -65,7 +68,6 @@ module "draft_main_service_perimeter" {
            access_levels = ["*"] 
          },
          identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
-
        }
        to = {
          resources = [
@@ -78,6 +80,30 @@ module "draft_main_service_perimeter" {
          }
        }
      }
+
+     #
+     # [INF-834] service-org-1041583873210-gcp-sa-logging
+     #
+     {
+       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "pubsub.googleapis.com" = {
+             methods = ["Publisher.Publish"]
+           }
+         }
+       }
+     }
+
    ]
 
 }
