@@ -57,7 +57,7 @@ module "draft_main_service_perimeter" {
   restricted_services_dry_run = var.vpc_sc_services
   access_levels_dry_run = ["nonprod_public_ips"]  
 
-   ingress_policies = [
+   ingress_policies_dry_run = [
      #
      # NetApp Service Access
      #
