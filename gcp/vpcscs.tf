@@ -23,7 +23,7 @@ module "org_policy" {
 }
 
 resource "google_access_context_manager_service_perimeters" "service-perimeter" {
-  parent = "accessPolicies/686487341936"
+  parent = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
 
   service_perimeters {
     name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
