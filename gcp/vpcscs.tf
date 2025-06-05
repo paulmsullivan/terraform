@@ -102,6 +102,54 @@ module "draft_main_service_perimeter" {
            }
          }
        }
+     },
+
+     #
+     # [INF-838] Blackhills
+     #
+     {
+       title = "[INF-838] Blackhills"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "pubsub.googleapis.com" = {
+             methods = ["Subscriber.Acknowledge",
+                        "Subscriber.ModifyAckDeadline",
+                        "Subscriber.StreamingPull"]
+           }
+         }
+       }
+     },
+
+     #
+     # [INF-839] svc-crowdstrike
+     #
+     {
+       title = "[INF-839] svc-crowdstrike"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:svc-crowdstrike@ss-security-iam.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "*" = {
+             methods = ["*"]
+           }
+         }
+       }
      }
 
    ]
