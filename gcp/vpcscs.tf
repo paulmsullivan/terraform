@@ -40,7 +40,7 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
   perimeter = "${var.perimeter_name}"
   title = "ingress policy title goes here"
   ingress_from {
-    identity_type = "any_identity"
+    identity_type = "ANY_IDENTITY"
     sources {
       access_level = "*"
     }
