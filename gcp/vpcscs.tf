@@ -59,12 +59,12 @@ module "draft_main_service_perimeter" {
 
    ingress_policies = [
      {
-       title = "Allow Access from everywhere"
+       title = "NetApp Service Access"
        from = {
          sources = {
-           access_levels = ["*"]
+           access_levels = ["*"] Allow Access from everywhere
          },
-         identities = ["user:paulmsullivan@gmail.com"]
+         identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
 
        }
        to = {
@@ -72,11 +72,8 @@ module "draft_main_service_perimeter" {
            "*"
          ]
          operations = {
-           "storage.googleapis.com" = {
-             methods = [
-               "google.storage.objects.get",
-               "google.storage.objects.list"
-             ]
+           "serviceusage.googleapis.com" = {
+             methods = ["*"]
            }
          }
        }
