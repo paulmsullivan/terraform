@@ -31,7 +31,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
     status {
       restricted_services = ["storage.googleapis.com"]
     }
-
+  }
 
 }
 
