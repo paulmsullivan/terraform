@@ -36,7 +36,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
 }
 
 
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy" {
+resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy_0" {
   perimeter = "${var.perimeter_name}"
   title = "ingress policy title goes here"
   ingress_from {
@@ -54,9 +54,9 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
       }
     }
   }
-  lifecycle {
-    create_before_destroy = true
-  }
+#  lifecycle {
+#    create_before_destroy = true
+#  }
 }
 
 
