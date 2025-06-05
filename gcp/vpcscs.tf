@@ -58,3 +58,27 @@ module "draft_main_service_perimeter" {
   access_levels_dry_run = ["nonprod_public_ips"]  
 
 }
+
+
+resource "google_access_context_manager_service_perimeter_ingress_policy" "logging" {
+  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft_main_service_perimeter"
+  title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
+  ingress_from {
+    identities = ["user:paulmsullivan@gmail.com"]    
+    sources {
+      access_level = "*"
+    }
+  }
+  ingress_to {
+    resources = ["*"]
+    operations {
+      service_name = "pubsub.googleapis.com"
+      method_selectors {
+        method = "Publisher.Publish"
+      }
+    }
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
