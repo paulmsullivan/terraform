@@ -150,7 +150,37 @@ module "draft_main_service_perimeter" {
            }
          }
        }
+     },
+
+     #
+     # Compute Default Service Account Log Writing
+     #
+     {
+       title = "Compute Default Service Account Log Writing"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:244108982333-compute@developer.gserviceaccount.com",
+                       "serviceAccount:290563624452-compute@developer.gserviceaccount.com",
+                       "serviceAccount:306119004471-compute@developer.gserviceaccount.com",
+                       "serviceAccount:681959470788-compute@developer.gserviceaccount.com",
+                       "serviceAccount:787344780781-compute@developer.gserviceaccount.com",
+                       "serviceAccount:940795332954-compute@developer.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "logging.googleapis.com" = {
+             methods = ["*"]
+           }
+         }
+       }
      }
+
+
 
    ]
 
