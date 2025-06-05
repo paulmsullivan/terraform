@@ -85,7 +85,7 @@ module "draft_main_service_perimeter" {
      # [INF-834] service-org-1041583873210-gcp-sa-logging
      #
      {
-       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
+       title = [INF-834] service-org-1041583873210-gcp-sa-logging
        from = {
          sources = {
            access_levels = ["*"] 
