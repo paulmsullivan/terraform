@@ -62,7 +62,7 @@ module "draft_main_service_perimeter" {
        title = "NetApp Service Access"
        from = {
          sources = {
-           access_levels = ["*"] Allow Access from everywhere
+           access_levels = ["*"] 
          },
          identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
 
