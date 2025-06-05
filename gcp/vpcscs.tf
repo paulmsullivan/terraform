@@ -78,7 +78,7 @@ resource "google_access_context_manager_service_perimeter_ingress_policy" "loggi
       }
     }
   }
-  lifecycle {
-    create_before_destroy = true
-  }
+#  lifecycle {
+#    create_before_destroy = true
+#  }
 }
