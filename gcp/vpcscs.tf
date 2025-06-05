@@ -36,6 +36,31 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
 }
 
 
+resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy" {
+  perimeter = "${var.perimeter_name}"
+  title = "ingress policy title goes here"
+  ingress_from {
+    identity_type = "any_identity"
+    sources {
+      access_level = "*"
+    }
+  }
+  ingress_to {
+    resources = ["*"]
+    operations {
+      service_name = "bigquery.googleapis.com"
+      method_selectors {
+        method = "*"
+      }
+    }
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
+
 
 #  module "regular_service_perimeter_1" {
 #    source                      = "terraform-google-modules/vpc-service-controls/google# modules/regular_service_perimeter"
