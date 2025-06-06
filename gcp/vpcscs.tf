@@ -246,6 +246,23 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+   ingress_policies {
+      title = "[INF-848] spanner-infra-cmek-global cloudkms"
+      ingress_from {
+        identities = ["serviceAccount:spanner-infra-cmek-global@system.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "cloudkms.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
 
     ingress_policies {
       title = "[INF-846] NetApp Networking"
