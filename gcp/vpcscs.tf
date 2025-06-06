@@ -27,51 +27,48 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   title  = "draft"
   status {
     restricted_services = ["storage.googleapis.com"]
+
+
+
+
+    ingress_policies {
+      ingress_from {
+        identity_type = "ANY_IDENTITY"
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "storage.googleapis.com"
+          method_selectors {
+            method = "google.storage.objects.get"
+          }
+        }
+      }
+    }
+
+    ingress_policies {
+      ingress_from {
+    identity_type = "ANY_IDENTITY"
+    sources {
+      access_level = "*"
+    }
+      }
+      ingress_to {
+        operations {
+          service_name = "bigquery.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
+
+
+
   }
   use_explicit_dry_run_spec = true
 }
-
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "inf001" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
-  {
-{
-  title = "[INF-001] ingress rule"
-  ingress_from {
-    identity_type = "ANY_IDENTITY"
-    sources {
-      access_level = "*"
-    }
-  }
-  ingress_to {
-    resources = ["*"]
-    operations {
-      service_name = "bigquery.googleapis.com"
-      method_selectors {
-        method = "*"
-      }
-    }
-  }
-  },
-  {title = "[INF-002] second ingress rule"
-  ingress_from {
-    identity_type = "ANY_IDENTITY"
-    sources {
-      access_level = "*"
-    }
-  }
-  ingress_to {
-    resources = ["*"]
-    operations {
-      service_name = "storage.googleapis.com"
-      method_selectors {
-        method = "*"
-      }
-    }
-  }
-}
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 
