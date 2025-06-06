@@ -21,28 +21,17 @@ module "org_policy" {
   policy_name = "sample-vpc-sc-permimeter"
 }
 
-resource "google_access_context_manager_service_perimeters" "service-perimeter" {
-  parent = "accessPolicies/686487341936"
-
-  service_perimeters {
-    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
-    title  = "draft"
-    status {
-      restricted_services = ["storage.googleapis.com"]
-    }
-    use_explicit_dry_run_spec = true
+resource "google_access_context_manager_service_perimeter" "service-perimeter" {
+  parent = "accessPolicies/${var.org_policy_name}"
+  name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
+  title  = "draft"
+  status {
+    restricted_services = ["storage.googleapis.com"]
   }
-
-  service_perimeters {
-    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/main"
-    title  = "main"
-    status {
-      restricted_services = ["storage.googleapis.com"]
-    }
-    use_explicit_dry_run_spec = true
-  }
-
 }
+
+
+
 
 
 resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy_0" {
