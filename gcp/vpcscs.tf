@@ -246,6 +246,26 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+
+
+   ingress_policies {
+      title = "[INF-847] lro-asset-collector"
+      ingress_from {
+        identities = ["serviceAccount:lro-asset-collector@system.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "dataproc.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
    ingress_policies {
       title = "[INF-848] spanner-infra-cmek-global cloudkms"
       ingress_from {
