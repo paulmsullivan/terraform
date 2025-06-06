@@ -101,6 +101,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "LoggingServiceV2.ListLogEntries"
           }
+        }
         operations {
           service_name = "cloudasset.googleapis.com"         
         }
@@ -150,7 +151,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     }
   }
     } # end status block
-    
+
   use_explicit_dry_run_spec = true
 }
 
