@@ -72,6 +72,21 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+   ingress_policies {
+      title = "[INF-839] svc-crowdstrike"
+      ingress_from {
+        identities = ["serviceAccount:svc-crowdstrike@ss-security-iam.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "*"
+        }
+      }
+    }
+
   }
 
   use_explicit_dry_run_spec = true
