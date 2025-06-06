@@ -184,7 +184,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     ingress_policies {
       title = "[INF-844] sailpoint@surescripts.com"
       ingress_from {
-        identities = ["sailpoint@surescripts.com"]
+        identities = ["user:sailpoint@surescripts.com"]
         sources {
           access_level = "*"
         }
