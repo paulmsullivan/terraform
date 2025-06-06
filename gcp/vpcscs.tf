@@ -87,6 +87,29 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "[INF-840] ss-security-iam"
+      ingress_from {
+        identities = ["serviceAccount:ss-security-iam@appspot.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "logging.googleapis.com"
+          method_selectors {
+            method = "LoggingServiceV2.ListLogEntries"
+          }
+        operations {
+          service_name = "cloudasset.googleapis.com"         
+        }
+        operations {
+          service_name = "iam.googleapis.com"         
+        }        
+      }
+    }
+
   }
 
   use_explicit_dry_run_spec = true
