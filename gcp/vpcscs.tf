@@ -237,10 +237,10 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         operations {
           service_name = "bigquery.googleapis.com"
           method_selectors {
-            method = "bigquery.tables.get"
+            permission = "bigquery.tables.get"
           }
           method_selectors {
-            method = "bigquery.tables.getData"
+            permission = "bigquery.tables.getData"
           }          
         }
       }
