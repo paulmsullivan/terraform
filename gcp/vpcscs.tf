@@ -220,6 +220,30 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "svc-cpi-test@vaulted-circle-378519.iam.gserviceaccount.com"
+      ingress_from {
+        identities = ["serviceAccount:svc-cpi-test@vaulted-circle-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "bigquery.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }  
+        operations {
+          service_name = "composer.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }        
+      }
+    }
+
 
 
 
