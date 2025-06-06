@@ -221,6 +221,27 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     }
 
 
+
+    ingress_policies {
+      title = "NetApp CMEK Access"
+      ingress_from {
+        identities = ["serviceAccount:n-cmek-usce1-212304910690@netapp-cmek-prod.iam.gserviceaccount.com",
+                      "serviceAccount:n-cmek-usce1-244108982333@netapp-cmek-prod.iam.gserviceaccount.com",
+                      "serviceAccount:n-cmek-usce1-306119004471@netapp-cmek-prod.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "cloudkms.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
     ingress_policies {
       title = "NetApp Service Access"
       ingress_from {
