@@ -25,11 +25,10 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   parent = "accessPolicies/${var.org_policy_name}"
   name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
   title  = "draft"
+
+  # "status" = enforced config
   status {
     restricted_services = ["storage.googleapis.com"]
-
-
-
 
     ingress_policies {
       title = "rule 001"
@@ -67,10 +66,8 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
-
-
-
   }
+
   use_explicit_dry_run_spec = true
 }
 
