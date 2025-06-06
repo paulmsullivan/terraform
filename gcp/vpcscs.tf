@@ -32,6 +32,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
     ingress_policies {
+      title = "rule 001"
       ingress_from {
         identity_type = "ANY_IDENTITY"
         sources {
@@ -49,6 +50,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     }
 
     ingress_policies {
+      title = "rule 002"
       ingress_from {
     identity_type = "ANY_IDENTITY"
     sources {
