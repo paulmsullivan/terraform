@@ -199,6 +199,26 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "[INF-840] Sailpoint AlloyDB"
+      ingress_from {
+        identities = ["serviceAccount:svc-sailpoint@prod-gcp-378519.iam.gserviceaccount.com",
+                      "serviceAccount:svc-sailpoint@staging-gcp-378519.iam.gserviceaccount.com",
+                      "serviceAccount:svc-sailpoint@systest-gcp-537851.iam.gserviceaccount.com",
+                      "serviceAccount:svc-sailpoint@vaulted-circle-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "alloydb.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
 
   } # end of status block
 
