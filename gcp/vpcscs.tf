@@ -31,18 +31,19 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     restricted_services = ["storage.googleapis.com"]
 
     ingress_policies {
-      title = "rule 001"
+      title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
       ingress_from {
         identity_type = "ANY_IDENTITY"
+        identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
         operations {
-          service_name = "storage.googleapis.com"
+          service_name = "pubsub.googleapis.com"
           method_selectors {
-            method = "google.storage.objects.get"
+            method = "Publisher.Publish"
           }
         }
       }
