@@ -31,13 +31,9 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   use_explicit_dry_run_spec = true
 }
 
-
-
-
-
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy_0" {
+resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "[INF-001]" {
   perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
-  title = "ingress policy title goes here"
+  title = "[INF-001] ingress rule"
   ingress_from {
     identity_type = "ANY_IDENTITY"
     sources {
@@ -53,9 +49,9 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
       }
     }
   }
-#  lifecycle {
-#    create_before_destroy = true
-#  }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 
