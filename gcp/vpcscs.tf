@@ -223,6 +223,39 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+
+   ingress_policies {
+      title = "Service Account So VPC-SC Logging Always Works"
+      ingress_from {
+        identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "*"
+        }
+      }
+    }
+
+   ingress_policies {
+      title = "All Human Users"
+      ingress_from {
+        identities = ["group:aa-Dev-AllUsers-Temp@surescripts-dev.qa",
+                      "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
+                      "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "*"
+        }
+      }
+    }
+
     ingress_policies {
       title = "Telegraf PubSub Metric Retrieval"
       ingress_from {
