@@ -33,7 +33,6 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     ingress_policies {
       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
       ingress_from {
-        identity_type = "ANY_IDENTITY"
         identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
