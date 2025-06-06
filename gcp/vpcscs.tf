@@ -161,7 +161,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     }
 
     ingress_policies {
-      title = "[INF-835] Kubernetes DNS'"
+      title = "[INF-835] Kubernetes DNS"
       ingress_from {
         identities = ["serviceAccount:svc-externaldns@devint-gke-778534.iam.gserviceaccount.com",
                       "serviceAccount:svc-externaldns@prod-gke-867530.iam.gserviceaccount.com",
@@ -180,6 +180,25 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
     }
+
+    ingress_policies {
+      title = "[INF-844] sailpoint@surescripts.com"
+      ingress_from {
+        identities = ["sailpoint@surescripts.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "iam.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
 
   } # end of status block
 
