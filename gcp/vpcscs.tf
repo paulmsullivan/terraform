@@ -49,18 +49,18 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     }
 
     ingress_policies {
-      title = "rule 002"
+      title = "[INF-838] Blackhills"
       ingress_from {
-    identity_type = "ANY_IDENTITY"
-    sources {
-      access_level = "*"
-    }
+        identities = ["serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
       }
       ingress_to {
         operations {
-          service_name = "bigquery.googleapis.com"
+          service_name = "pubsub.googleapis.com"
           method_selectors {
-            method = "*"
+            method = ["Subscriber.Acknowledge","Subscriber.ModifyAckDeadline","Subscriber.Streaming"]
           }
         }
       }
