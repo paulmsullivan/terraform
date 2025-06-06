@@ -66,7 +66,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
             method = "Subscriber.ModifyAckDeadline"
           }
           method_selectors {
-            method = "Subscriber.Streaming"
+            method = "Subscriber.StreamingPull"
           }
         }
       }
