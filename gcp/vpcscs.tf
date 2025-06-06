@@ -160,6 +160,27 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "[INF-835] Kubernetes DNS'"
+      ingress_from {
+        identities = ["serviceAccount:svc-externaldns@devint-gke-778534.iam.gserviceaccount.com",
+                      "serviceAccount:svc-externaldns@prod-gke-867530.iam.gserviceaccount.com",
+                      "serviceAccount:svc-externaldns@systest-gke-543261.iam.gserviceaccount.com",
+                      "serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "dns.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
   } # end of status block
 
   use_explicit_dry_run_spec = true
