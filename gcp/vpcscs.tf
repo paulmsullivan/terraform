@@ -128,7 +128,8 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           }
           method_selectors {
             method = "IAM.GetRole"
-          }          
+          }         
+        }
         operations {
           service_name = "pubsub.googleapis.com"   
           method_selectors {
