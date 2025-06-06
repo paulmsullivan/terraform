@@ -103,10 +103,16 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           }
         }
         operations {
-          service_name = "cloudasset.googleapis.com"         
+          service_name = "cloudasset.googleapis.com"      
+          method_selectors {
+            method = "*"
+          }
         }
         operations {
-          service_name = "iam.googleapis.com"         
+          service_name = "iam.googleapis.com"   
+          method_selectors {
+            method = "*"
+          }
         }        
       }
     }
@@ -146,7 +152,10 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           } 
         }
         operations {
-          service_name = "compute.googleapis.com"         
+          service_name = "compute.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
         }        
       }
     }
