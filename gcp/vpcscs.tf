@@ -48,14 +48,7 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
         method = "*"
       }
     }
-  }
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "inf002" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
+  },
   title = "[INF-002] second ingress rule"
   ingress_from {
     identity_type = "ANY_IDENTITY"
@@ -76,4 +69,5 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
     create_before_destroy = true
   }
 }
+
 
