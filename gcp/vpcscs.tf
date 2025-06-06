@@ -54,4 +54,26 @@ resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy
   }
 }
 
+resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "inf002" {
+  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
+  title = "[INF-002] second ingress rule"
+  ingress_from {
+    identity_type = "ANY_IDENTITY"
+    sources {
+      access_level = "*"
+    }
+  }
+  ingress_to {
+    resources = ["*"]
+    operations {
+      service_name = "storage.googleapis.com"
+      method_selectors {
+        method = "*"
+      }
+    }
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
