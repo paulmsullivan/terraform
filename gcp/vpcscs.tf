@@ -31,7 +31,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   use_explicit_dry_run_spec = true
 }
 
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "[INF-001]" {
+resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "inf001" {
   perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
   title = "[INF-001] ingress rule"
   ingress_from {
