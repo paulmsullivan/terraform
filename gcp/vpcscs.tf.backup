@@ -1,4 +1,3 @@
- 
 
 resource "random_id" "random_suffix" {
   byte_length = 2
@@ -22,77 +21,166 @@ module "org_policy" {
   policy_name = "sample-vpc-sc-permimeter"
 }
 
-resource "google_access_context_manager_service_perimeters" "service-perimeter" {
-  parent = "accessPolicies/686487341936"
 
-  service_perimeters {
-    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
-    title  = "draft"
-    status {
-      restricted_services = ["storage.googleapis.com"]
-    }
-    use_explicit_dry_run_spec = true
-  }
-
+module "nonprod_public_ip_access_level" {
+  source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
+  policy      = var.org_policy_name
+  name        = "nonprod_public_ips"
+  description = "public ip ranges for nonprod access level"
+  ip_subnetworks = ["64.201.224.0/21",
+                    "199.47.104.0/21",
+                    "69.25.46.0/24",
+                    "216.52.121.0/24",
+                    "198.62.120.0/24",
+                    "38.92.135.0/24",
+                    "38.126.162.0/24",
+                    "63.251.92.0/24",
+                    "4.7.223.61/32",
+                    "50.216.60.98/32",
+                    "4.30.231.129/32",
+                    "4.157.58.65/32",
+                    "209.119.136.18/32",
+                    "128.177.81.62/32",
+                    "65.207.61.192/27",
+                    "208.45.191.192/29"]
 }
 
 
-resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy_0" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
-  title = "ingress policy title goes here"
-  ingress_from {
-    identity_type = "ANY_IDENTITY"
-    sources {
-      access_level = "*"
-    }
-  }
-  ingress_to {
-    resources = ["*"]
-    operations {
-      service_name = "bigquery.googleapis.com"
-      method_selectors {
-        method = "*"
-      }
-    }
-  }
-#  lifecycle {
-#    create_before_destroy = true
-#  }
+module "draft_main_service_perimeter" {
+  source                      = "terraform-google-modules/vpc-service-controls/google//modules/regular_service_perimeter"
+  policy                      = var.org_policy_name
+  perimeter_name              = "draft"
+  description                 = "DRAFT (empty) Perimeter shielding projects"
+  resources_dry_run           = [] 
+  # eventually look to use a variable when implementing: var.vpc_sc_nonprod_projects
+  restricted_services_dry_run = var.vpc_sc_services
+  access_levels_dry_run = ["nonprod_public_ips"]  
+
+   ingress_policies_dry_run = [
+     #
+     # NetApp Service Access
+     #
+     {
+       title = "NetApp Service Access"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "serviceusage.googleapis.com" = {
+             methods = ["*"]
+           }
+         }
+       }
+     },
+
+     #
+     # [INF-834] service-org-1041583873210-gcp-sa-logging
+     #
+     {
+       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "pubsub.googleapis.com" = {
+             methods = ["Publisher.Publish"]
+           }
+         }
+       }
+     },
+
+     #
+     # [INF-838] Blackhills
+     #
+     {
+       title = "[INF-838] Blackhills"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "pubsub.googleapis.com" = {
+             methods = ["Subscriber.Acknowledge",
+                        "Subscriber.ModifyAckDeadline",
+                        "Subscriber.StreamingPull"]
+           }
+         }
+       }
+     },
+
+     #
+     # [INF-839] svc-crowdstrike
+     #
+     {
+       title = "[INF-839] svc-crowdstrike"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:svc-crowdstrike@ss-security-iam.iam.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "*" = {
+             methods = ["*"]
+           }
+         }
+       }
+     },
+
+     #
+     # Compute Default Service Account Log Writing
+     #
+     {
+       title = "Compute Default Service Account Log Writing"
+       from = {
+         sources = {
+           access_levels = ["*"] 
+         },
+         identities = ["serviceAccount:244108982333-compute@developer.gserviceaccount.com",
+                       "serviceAccount:290563624452-compute@developer.gserviceaccount.com",
+                       "serviceAccount:306119004471-compute@developer.gserviceaccount.com",
+                       "serviceAccount:681959470788-compute@developer.gserviceaccount.com",
+                       "serviceAccount:787344780781-compute@developer.gserviceaccount.com",
+                       "serviceAccount:940795332954-compute@developer.gserviceaccount.com"]
+       }
+       to = {
+         resources = [
+           "*"
+         ]
+         operations = {
+           "logging.googleapis.com" = {
+             methods = ["*"]
+           }
+         }
+       }
+     }
+
+
+
+   ]
+
 }
-
-
-
-
-#  module "regular_service_perimeter_1" {
-#    source                      = "terraform-google-modules/vpc-service-controls/google# modules/regular_service_perimeter"
-#    policy                      = var.org_policy_name
-#    perimeter_name              = "regular_perimeter_1"
-#    description                 = "Perimeter shielding projects"
-#    resources_dry_run           = ["127799619174"]
-#    restricted_services_dry_run = ["bigquery.googleapis.com", "storage.googleapis.com"]
-#    ingress_policies = [
-#      {
-#        title = "Allow Access from everywhere"
-#        from = {
-#          sources = {
-#            access_levels = ["*"] # Allow Access from everywhere
-#          },
-#          identities = ["user:paulmsullivan@gmail.com"]
-
-#        }
-#        to = {
-#          resources = [
-#            "*"
-#          ]
-#          operations = {
-#            "storage.googleapis.com" = {
-#              methods = [
-#                "google.storage.objects.get",
-#                "google.storage.objects.list"
-#              ]
-#            }
-#          }
-#        }
-#      }
-#    ]
-#  }
