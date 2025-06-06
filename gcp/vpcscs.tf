@@ -222,6 +222,30 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+   ingress_policies {
+      title = "CloudZero"
+      ingress_from {
+        identities = ["serviceAccount:cloudzero-601403c4-04c9-4b92-8@prod-billing-data-ingest.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        #
+        #  NEED TO ADD projects/705515732372 AS A TARGET
+        #
+        operations {
+          service_name = "bigquery.googleapis.com"
+          method_selectors {
+            method = "bigquery.tables.get"
+          }
+          method_selectors {
+            method = "bigquery.tables.getData"
+          }          
+        }
+      }
+    }
+
     ingress_policies {
       title = "NetApp CMEK Access"
       ingress_from {
