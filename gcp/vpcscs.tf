@@ -33,6 +33,15 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
     use_explicit_dry_run_spec = true
   }
 
+  service_perimeters {
+    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
+    title  = "main"
+    status {
+      restricted_services = ["storage.googleapis.com"]
+    }
+    use_explicit_dry_run_spec = true
+  }
+
 }
 
 
