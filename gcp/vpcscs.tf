@@ -110,6 +110,44 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "[INF-841] Security Center"
+      ingress_from {
+        identities = ["serviceAccount:service-org-1041583873210@gcp-sa-chronicle-soar.iam.gserviceaccount.com",
+                      "serviceAccount:service-org-1041583873210@security-center-api.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "iam.googleapis.com"
+          method_selectors {
+            method = "WorkloadIdentityPools.ListWorkloadIdentityPools"
+          }
+          method_selectors {
+            method = "IAM.GetRole"
+          }          
+        operations {
+          service_name = "pubsub.googleapis.com"   
+          method_selectors {
+            method = "Publisher.GetTopic"
+          } 
+          method_selectors {
+            method = "Subscriber.Acknowledge"
+          } 
+          method_selectors {
+            method = "Subscriber.GetSubscription"
+          }           
+          method_selectors {
+            method = "Subscriber.Pull"
+          } 
+        }
+        operations {
+          service_name = "compute.googleapis.com"         
+        }        
+      }
+    }
   }
 
   use_explicit_dry_run_spec = true
