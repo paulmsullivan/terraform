@@ -60,7 +60,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         operations {
           service_name = "pubsub.googleapis.com"
           method_selectors {
-            method = ["Subscriber.Acknowledge","Subscriber.ModifyAckDeadline","Subscriber.Streaming"]
+            method = "Subscriber.Acknowledge"
+          }
+          method_selectors {
+            method = "Subscriber.ModifyAckDeadline"
+          }
+          method_selectors {
+            method = "Subscriber.Streaming"
           }
         }
       }
