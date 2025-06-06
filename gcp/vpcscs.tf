@@ -220,6 +220,25 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+
+    ingress_policies {
+      title = "NetApp Service Access"
+      ingress_from {
+        identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "serviceusage.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
   } # end of status block
 
   use_explicit_dry_run_spec = true
