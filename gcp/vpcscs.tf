@@ -246,7 +246,20 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
-
+    ingress_policies {
+      title = "[INF-849] Break Glass Access"
+      ingress_from {
+        identities = ["group:grp-org-owner@surescripts.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "*"
+        }
+      }
+    }
 
    ingress_policies {
       title = "[INF-847] lro-asset-collector"
