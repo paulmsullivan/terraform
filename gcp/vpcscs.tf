@@ -28,6 +28,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   status {
     restricted_services = ["storage.googleapis.com"]
   }
+  use_explicit_dry_run_spec = true
 }
 
 
