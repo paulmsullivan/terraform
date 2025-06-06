@@ -222,6 +222,25 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+
+    ingress_policies {
+      title = "Telegraf PubSub Metric Retrieval"
+      ingress_from {
+        identities = ["serviceAccount:telegraf@prod-gcp-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "pubsub.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
+
    ingress_policies {
       title = "CloudZero"
       ingress_from {
