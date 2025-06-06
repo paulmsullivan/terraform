@@ -223,6 +223,23 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+    ingress_policies {
+      title = "[INF-846] NetApp Networking"
+      ingress_from {
+        identities = ["serviceAccount:svc-sde-networking@netapp-us-c1-sde.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        operations {
+          service_name = "servicenetworking.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+      }
+    }
 
    ingress_policies {
       title = "Service Account So VPC-SC Logging Always Works"
