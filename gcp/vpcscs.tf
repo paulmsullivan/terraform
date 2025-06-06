@@ -25,7 +25,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
   parent = "accessPolicies/686487341936"
 
   service_perimeters {
-    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
+    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
     title  = "draft"
     status {
       restricted_services = ["storage.googleapis.com"]
@@ -34,7 +34,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
   }
 
   service_perimeters {
-    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
+    name   = "accessPolicies/${var.org_policy_name}/servicePerimeters/main"
     title  = "main"
     status {
       restricted_services = ["storage.googleapis.com"]
@@ -46,7 +46,7 @@ resource "google_access_context_manager_service_perimeters" "service-perimeter" 
 
 
 resource "google_access_context_manager_service_perimeter_dry_run_ingress_policy" "ingress_policy_0" {
-  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/${var.perimeter_name}"
+  perimeter = "accessPolicies/${var.org_policy_name}/servicePerimeters/draft"
   title = "ingress policy title goes here"
   ingress_from {
     identity_type = "ANY_IDENTITY"
