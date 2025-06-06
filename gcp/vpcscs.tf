@@ -151,7 +151,6 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
   }
-    } # end status block
 
   use_explicit_dry_run_spec = true
 }
