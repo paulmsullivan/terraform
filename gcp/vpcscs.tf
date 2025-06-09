@@ -39,6 +39,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]
         operations {
           service_name = "pubsub.googleapis.com"
           method_selectors {
@@ -57,6 +58,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]
         operations {
           service_name = "pubsub.googleapis.com"
           method_selectors {
@@ -81,6 +83,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]
         operations {
           service_name = "*"
         }
@@ -96,6 +99,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "logging.googleapis.com"
           method_selectors {
@@ -127,6 +131,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "iam.googleapis.com"
           method_selectors {
@@ -172,6 +177,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "dns.googleapis.com"
           method_selectors {
@@ -190,6 +196,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "iam.googleapis.com"
           method_selectors {
@@ -211,6 +218,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "alloydb.googleapis.com"
           method_selectors {
@@ -229,6 +237,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "bigquery.googleapis.com" 
           method_selectors {
@@ -255,6 +264,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "*"
         }
@@ -270,6 +280,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "dataproc.googleapis.com"
           method_selectors {
@@ -288,6 +299,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "cloudkms.googleapis.com"
           method_selectors {
@@ -306,6 +318,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "servicenetworking.googleapis.com"
           method_selectors {
@@ -324,6 +337,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "*"
         }
@@ -341,6 +355,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "*"
         }
@@ -356,6 +371,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "pubsub.googleapis.com"
           method_selectors {
@@ -377,6 +393,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         #
         #  NEED TO ADD projects/705515732372 AS A TARGET
         #
+        resources = ["*"]        
         operations {
           service_name = "bigquery.googleapis.com"
           method_selectors {
@@ -400,6 +417,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "cloudkms.googleapis.com"
           method_selectors {
@@ -418,6 +436,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
+        resources = ["*"]        
         operations {
           service_name = "serviceusage.googleapis.com"
           method_selectors {
