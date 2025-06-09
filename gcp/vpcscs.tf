@@ -30,6 +30,34 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
   status {
     restricted_services = ["storage.googleapis.com"]
 
+    egress_policies {
+      title = "[INF-837] Veeam Backup"
+      egress_from {
+        identities = ["serviceAccount:svc-veeam-prod-backup@prod-backup-378519.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "compute.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+        operations {
+          service_name = "pubsub.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }        
+      }
+    }
+
+
+
+
+
+
+
     ingress_policies {
       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
       ingress_from {
@@ -253,7 +281,87 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    ingress_policies {
+      title = "Compute Default Service Account Log Writing"
+      ingress_from {
+        identities = ["serviceAccount:244108982333-compute@developer.gserviceaccount.com",
+                      "serviceAccount:290563624452-compute@developer.gserviceaccount.com",
+                      "serviceAccount:306119004471-compute@developer.gserviceaccount.com",
+                      "serviceAccount:681959470788-compute@developer.gserviceaccount.com",
+                      "serviceAccount:787344780781-compute@developer.gserviceaccount.com",
+                      "serviceAccount:940795332954-compute@developer.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        resources = ["*"]        
+        operations {
+          service_name = "logging.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
+    ingress_policies {
+      title = "[INF-843] Hadoopdash"
+      ingress_from {
+        identities = ["serviceAccount:hadoopdash-api@prod-gcp-378519.iam.gserviceaccount.com",
+                      "serviceAccount:hadoopdash-api@vaulted-circle-378519.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        resources = ["*"]        
+        operations {
+          service_name = "composer.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
+
+    ingress_policies {
+      title = "drproc-tp-sa@cloud-dataproc-producer.iam.gservice"
+      ingress_from {
+        identities = ["serviceAccount:drproc-tp-sa@cloud-dataproc-producer.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        resources = ["*"]        
+        operations {
+          service_name = "serviceusage.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
+
+    ingress_policies {
+      title = "ansible-tower@proddr.iam.gserviceaccount.com"
+      ingress_from {
+        identities = ["serviceAccount:ansible-tower@proddr.iam.gserviceaccount.com"]
+        sources {
+          access_level = "*"
+        }
+      }
+      ingress_to {
+        resources = ["*"]        
+        operations {
+          service_name = "pubsub.googleapis.com" 
+          method_selectors {
+            method = "*"
+          }
+        }        
+      }
+    }
 
     ingress_policies {
       title = "[INF-849] Break Glass Access"
