@@ -58,6 +58,25 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
 
 
 
+
+
+
+    egress_policies {
+      title = "NetApp - Service Usage"
+      egress_from {
+        identities = ["serviceAccount:svc-atom-tenant-admin@netapp-us-c1-sde.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "serviceusage.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
+
     ingress_policies {
       title = "[INF-834] service-org-1041583873210-gcp-sa-logging"
       ingress_from {
