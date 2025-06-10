@@ -52,14 +52,174 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
+    egress_policies {
+      title = "container-robot-engine"
+      egress_from {
+        identities = ["serviceAccount:service-172011119645@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-212304910690@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-232977390572@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-244108982333@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-306119004471@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-360566372878@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-50751041552@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-573403924128@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-680050666617@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-681959470788@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-835218236591@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-908138150738@container-engine-robot.iam.gserviceaccount.com",
+                      "serviceAccount:service-940795332954@container-engine-robot.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "kubernetesmetadata.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "[INF-842] Terraform"
+      egress_from {
+        identities = ["serviceAccount:terraform-creator-service@devops-resources-377817.iam.gserviceaccount.com",
+                      "serviceAccount:terraform@external-smoke-test-929638.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "*"
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "[INF-835] Kubernetes Orchestration"
+      egress_from {
+        identities = ["serviceAccount:gke-devint@devint-gke-778534.iam.gserviceaccount.com",
+                      "serviceAccount:gke-prod@prod-gke-867530.iam.gserviceaccount.com",
+                      "serviceAccount:gke-staging@staging-gke-164926.iam.gserviceaccount.com",
+                      "serviceAccount:svc-monitor-composer@prod-gcp-378519.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "artifactregistry.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }
+        operations {
+          service_name = "containerregistry.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }     
+        operations {
+          service_name = "containerfilesystem.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }           
+      }
+    }
 
+    egress_policies {
+      title = "[INF-828] NetApp"
+      egress_from {
+        identities = ["serviceAccount:svc-atom-supportability@netapp-us-c1-sde.iam.gserviceaccount.com",
+                      "serviceAccount:svc-sde-networking@netapp-us-c1-sde.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "storage.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
+#
+# need to update resources to: projects/884380563491
+#
+    egress_policies {
+      title = "security-center"
+      egress_from {
+        identities = ["serviceAccount:service-org-1041583873210@security-center-api.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "compute.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "[INF-849] break-glass"
+      egress_from {
+        identities = ["group:grp-org-owner@surescripts.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "*"
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "service-656151505619@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
+      egress_from {
+        identities = ["serviceAccount:service-656151505619@gcp-sa-binaryauthorization.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "binaryauthorization.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "All Human Users"
+      egress_from {
+        identities = ["group:aa-Dev-AllUsers-Temp@surescripts-dev.qa",
+                      "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
+                      "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "*"
+        }       
+      }
+    }
 
+    egress_policies {
+      title = "Network Terraform for Org Level Firewall Policy"
+      egress_from {
+        identities = ["serviceAccount:terraform@prod-gcp-network-385418.iam.gserviceaccount.com"]
+      }
+      egress_to {
+        resources = ["*"]
+        operations {
+          service_name = "networksecurity.googleapis.com"
+          method_selectors {
+            method = "*"
+          }
+        }       
+      }
+    }
 
     egress_policies {
       title = "NetApp - Service Usage"
