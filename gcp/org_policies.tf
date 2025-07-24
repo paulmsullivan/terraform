@@ -11,7 +11,7 @@ module "gcp_org_policy_v2_list" {
     # Rule 1
     {
       enforcement = true
-      allow = var.vms
+      allow = var.vms_with_public_ips
     }
   ]
 }
