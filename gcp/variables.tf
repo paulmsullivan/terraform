@@ -13,6 +13,6 @@ variable "vpc_sc_services" {
   type = list(string)
 }
 
-variable "var.vms_with_public_ips" {
+variable "vms_with_public_ips" {
   type = list(string)
 }
