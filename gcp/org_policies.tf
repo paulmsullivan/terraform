@@ -1,12 +1,18 @@
+module "gcp_org_policy_v2_list" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 7.0"
 
-resource "google_organization_policy" "public_ip_policy" {
-  org_id = "987000039256"
-  constraint = "compute.vmExternalIpAccess"
+  policy_root    = "organization"
+  policy_root_id = "987000039256"
+  constraint     = "compute.vmExternalIpAccess"
+  policy_type    = "list"
 
-  list_policy {
-    allow {
-      values = ["projects/cogent-dragon-379819/zones/us-central1-c/instances/paullab-vm1","projects/wordpress-446723/zones/us-central1-a/instances/wordpress-1-vm"]
+  rules = [
+    # Rule 1
+    {
+      enforcement = true
+      allow = var.vms
     }
-  }
+  ]
 }
 
