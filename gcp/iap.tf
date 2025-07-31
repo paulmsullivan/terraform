@@ -4,14 +4,14 @@
 # a conditional IAM policy to restrict access
 # to authorised users coming from authorised networks
 
-resource “google_access_context_manager_access_level” “access-level” {
-parent = “accessPolicies/686487341936”
-name = “accessPolicies/686487341936/accessLevels/US-GEO”
-title = “secure-iap-access-level”
-description = “This access level lists the authorised network addresses”
+resource "google_access_context_manager_access_level" "access-level" {
+parent = "accessPolicies/686487341936"
+name = "accessPolicies/686487341936/accessLevels/US-GEO"
+title = "secure-iap-access-level"
+description = "This access level lists the authorised network addresses"
 basic {
 conditions {
-        region = [“US”]}
+        region = ["US"]}
     }
 }
 
