@@ -6,8 +6,8 @@
 
 resource "google_access_context_manager_access_level" "access-level" {
   parent      = "accessPolicies/686487341936"
-  name        = "accessPolicies/686487341936/accessLevels/usgeo"
-  title       = "secure-iap-access-level"
+  name        = "accessPolicies/686487341936/accessLevels/usregion"
+  title       = "from_us_region"
   description = "This access level lists the authorised network addresses"
   basic {
     conditions {
@@ -27,8 +27,8 @@ resource "google_iap_tunnel_iam_member" "allow-remote-access-to-iap" {
   member  = "user:paul.sullivan@sobekdigital.com"
 
   condition {
-    title       = "allow_remote_access_to_iap"
-    description = "Allow access to IAP tunnel for authorized users"
-    expression  = "\"accessPolicies/686487341936/accessLevels/usgeo\" in request.auth.access_levels"
+    title       = "allow_iap_access_from_us_region"
+    description = "Allow access to IAP tunnel for authorized users from US region"
+    expression  = "\"accessPolicies/686487341936/accessLevels/usregion\" in request.auth.access_levels"
   }
 }
