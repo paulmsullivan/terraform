@@ -6,7 +6,7 @@
 
 resource "google_access_context_manager_access_level" "access-level" {
   parent      = "accessPolicies/686487341936"
-  name        = "accessPolicies/686487341936/accessLevels/US-GEO"
+  name        = "accessPolicies/686487341936/accessLevels/usgeo"
   title       = "secure-iap-access-level"
   description = "This access level lists the authorised network addresses"
   basic {
