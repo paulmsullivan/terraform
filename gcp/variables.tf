@@ -1,16 +1,16 @@
 variable "org_policy_name" {
   description = "org global policy id"
-  type = string
+  type        = string
 }
 
 variable "perimeter_name" {
   description = "perimeter name"
-  type = string
+  type        = string
 }
 
 variable "vpc_sc_services" {
   description = "List of VPC SC restricted services"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "vms_with_public_ips" {

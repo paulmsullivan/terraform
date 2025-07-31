@@ -5,15 +5,15 @@
 # to authorised users coming from authorised networks
 
 resource "google_access_context_manager_access_level" "access-level" {
-parent = "accessPolicies/686487341936"
-name = "accessPolicies/686487341936/accessLevels/US-GEO"
-title = "secure-iap-access-level"
-description = "This access level lists the authorised network addresses"
-basic {
-conditions {
-        regions = ["US"]
-}
+  parent      = "accessPolicies/686487341936"
+  name        = "accessPolicies/686487341936/accessLevels/US-GEO"
+  title       = "secure-iap-access-level"
+  description = "This access level lists the authorised network addresses"
+  basic {
+    conditions {
+      regions = ["US"]
     }
+  }
 }
 
 
@@ -22,13 +22,13 @@ conditions {
 # IF the user is connecting from an authorised network defined in the access 
 # list
 resource "google_iap_tunnel_iam_member" "allow-remote-access-to-iap" {
-    project = "cogent-dragon-379819"
-    role    = "roles/iap.tunnelResourceAccessor"
-    member  = "user:paul.sullivan@sobekdigital.com"
+  project = "cogent-dragon-379819"
+  role    = "roles/iap.tunnelResourceAccessor"
+  member  = "user:paul.sullivan@sobekdigital.com"
 
-    condition {
-      title = "allow_remote_access_to_iap"
-      description = "Allow access to IAP tunnel for authorized users"
-      expression = "\"accessPolicies/686487341936/accessLevels/US-GEO\" in request.auth.access_levels"
-    }
+  condition {
+    title       = "allow_remote_access_to_iap"
+    description = "Allow access to IAP tunnel for authorized users"
+    expression  = "\"accessPolicies/686487341936/accessLevels/US-GEO\" in request.auth.access_levels"
+  }
 }

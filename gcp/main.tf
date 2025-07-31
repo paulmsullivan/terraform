@@ -12,7 +12,7 @@ terraform {
 }
 
 variable "gcp-creds" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -23,9 +23,9 @@ variable "gcp-creds" {
 #
 provider "google" {
   credentials = var.gcp-creds
-  project = "cogent-dragon-379819"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project     = "cogent-dragon-379819"
+  region      = "us-central1"
+  zone        = "us-central1-c"
 }
 
 resource "google_project_service" "project" {
@@ -51,7 +51,7 @@ resource "google_project_iam_custom_role" "customVMStartStopv2" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
 #
 resource "google_compute_network" "paullab-vpc" {
-  name = "paullab-vpc"
+  name                    = "paullab-vpc"
   auto_create_subnetworks = false
 }
 
@@ -73,8 +73,8 @@ resource "google_compute_subnetwork" "paullab-subnetwork" {
 # schedule 5 values seem to be (minute of the hour)(hour of the day)(day of the month)(month)(day of week)
 #
 resource "google_compute_resource_policy" "daily-0100-stop" {
-  name   = "daily-0100-stop"
-  description = "Start and stop instances"  
+  name        = "daily-0100-stop"
+  description = "Start and stop instances"
 
   instance_schedule_policy {
     vm_stop_schedule {
@@ -90,7 +90,7 @@ resource "google_compute_resource_policy" "daily-0100-stop" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy
 #
 resource "google_compute_resource_policy" "daily-backup" {
-  name   = "daily-backup"
+  name = "daily-backup"
 
   snapshot_schedule_policy {
     schedule {
@@ -108,15 +108,15 @@ resource "google_compute_resource_policy" "daily-backup" {
 }
 
 resource "google_compute_instance" "paullab-vm1" {
-  name         = "paullab-vm1"
-  machine_type = "e2-micro"
+  name                      = "paullab-vm1"
+  machine_type              = "e2-micro"
   allow_stopping_for_update = true
 
   resource_policies = [
     google_compute_resource_policy.daily-0100-stop.id
   ]
 
-  tags = ["all-linux","all-instance"]
+  tags = ["all-linux", "all-instance"]
 
   boot_disk {
     initialize_params {
@@ -167,7 +167,7 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
 resource "google_organization_policy" "serial_port_policy" {
   org_id     = "987000039256"
   constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
- 
+
   boolean_policy {
     enforced = true
   }
@@ -176,16 +176,16 @@ resource "google_organization_policy" "serial_port_policy" {
 ## Allow incoming access to our instance via
 ## port 22, from the IAP servers
 resource "google_compute_firewall" "inbound-iap-ssh" {
-    name        = "allow-incoming-ssh-from-iap"
-   network      = google_compute_network.paullab-vpc.id
+  name    = "allow-incoming-ssh-from-iap"
+  network = google_compute_network.paullab-vpc.id
 
-    direction = "INGRESS"
-    allow {
-        protocol = "tcp"
-        ports    = ["22"]  
-    }
-    source_ranges = [
-        "35.235.240.0/20"
-    ]
-    target_tags = ["all-linux"]
+  direction = "INGRESS"
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  source_ranges = [
+    "35.235.240.0/20"
+  ]
+  target_tags = ["all-linux"]
 }

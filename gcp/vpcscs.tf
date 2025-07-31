@@ -1,7 +1,7 @@
 
 resource "random_id" "random_suffix" {
   byte_length = 2
-} 
+}
 
 module "access_level_vpc_ranges" {
   source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
@@ -48,7 +48,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }        
+        }
       }
     }
 
@@ -56,18 +56,18 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "container-robot-engine"
       egress_from {
         identities = ["serviceAccount:service-172011119645@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-212304910690@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-232977390572@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-244108982333@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-306119004471@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-360566372878@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-50751041552@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-573403924128@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-680050666617@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-681959470788@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-835218236591@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-908138150738@container-engine-robot.iam.gserviceaccount.com",
-                      "serviceAccount:service-940795332954@container-engine-robot.iam.gserviceaccount.com"]
+          "serviceAccount:service-212304910690@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-232977390572@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-244108982333@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-306119004471@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-360566372878@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-50751041552@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-573403924128@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-680050666617@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-681959470788@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-835218236591@container-engine-robot.iam.gserviceaccount.com",
+          "serviceAccount:service-908138150738@container-engine-robot.iam.gserviceaccount.com",
+        "serviceAccount:service-940795332954@container-engine-robot.iam.gserviceaccount.com"]
       }
       egress_to {
         resources = ["*"]
@@ -76,7 +76,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -84,13 +84,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-842] Terraform"
       egress_from {
         identities = ["serviceAccount:terraform-creator-service@devops-resources-377817.iam.gserviceaccount.com",
-                      "serviceAccount:terraform@external-smoke-test-929638.iam.gserviceaccount.com"]
+        "serviceAccount:terraform@external-smoke-test-929638.iam.gserviceaccount.com"]
       }
       egress_to {
         resources = ["*"]
         operations {
           service_name = "*"
-        }       
+        }
       }
     }
 
@@ -98,9 +98,9 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-835] Kubernetes Orchestration"
       egress_from {
         identities = ["serviceAccount:gke-devint@devint-gke-778534.iam.gserviceaccount.com",
-                      "serviceAccount:gke-prod@prod-gke-867530.iam.gserviceaccount.com",
-                      "serviceAccount:gke-staging@staging-gke-164926.iam.gserviceaccount.com",
-                      "serviceAccount:svc-monitor-composer@prod-gcp-378519.iam.gserviceaccount.com"]
+          "serviceAccount:gke-prod@prod-gke-867530.iam.gserviceaccount.com",
+          "serviceAccount:gke-staging@staging-gke-164926.iam.gserviceaccount.com",
+        "serviceAccount:svc-monitor-composer@prod-gcp-378519.iam.gserviceaccount.com"]
       }
       egress_to {
         resources = ["*"]
@@ -115,13 +115,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }     
+        }
         operations {
           service_name = "containerfilesystem.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }           
+        }
       }
     }
 
@@ -129,7 +129,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-828] NetApp"
       egress_from {
         identities = ["serviceAccount:svc-atom-supportability@netapp-us-c1-sde.iam.gserviceaccount.com",
-                      "serviceAccount:svc-sde-networking@netapp-us-c1-sde.iam.gserviceaccount.com"]
+        "serviceAccount:svc-sde-networking@netapp-us-c1-sde.iam.gserviceaccount.com"]
       }
       egress_to {
         resources = ["*"]
@@ -138,13 +138,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
-#
-# need to update resources to: projects/884380563491
-#
+    #
+    # need to update resources to: projects/884380563491
+    #
     egress_policies {
       title = "security-center"
       egress_from {
@@ -157,7 +157,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -170,7 +170,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         resources = ["*"]
         operations {
           service_name = "*"
-        }       
+        }
       }
     }
 
@@ -186,7 +186,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -194,14 +194,14 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "All Human Users"
       egress_from {
         identities = ["group:aa-Dev-AllUsers-Temp@surescripts-dev.qa",
-                      "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
-                      "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
+          "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
+        "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
       }
       egress_to {
         resources = ["*"]
         operations {
           service_name = "*"
-        }       
+        }
       }
     }
 
@@ -217,7 +217,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -233,7 +233,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -281,7 +281,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "[INF-839] svc-crowdstrike"
       ingress_from {
         identities = ["serviceAccount:svc-crowdstrike@ss-security-iam.iam.gserviceaccount.com"]
@@ -306,7 +306,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "logging.googleapis.com"
           method_selectors {
@@ -314,17 +314,17 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           }
         }
         operations {
-          service_name = "cloudasset.googleapis.com"      
+          service_name = "cloudasset.googleapis.com"
           method_selectors {
             method = "*"
           }
         }
         operations {
-          service_name = "iam.googleapis.com"   
+          service_name = "iam.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }        
+        }
       }
     }
 
@@ -332,13 +332,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-841] Security Center"
       ingress_from {
         identities = ["serviceAccount:service-org-1041583873210@gcp-sa-chronicle-soar.iam.gserviceaccount.com",
-                      "serviceAccount:service-org-1041583873210@security-center-api.iam.gserviceaccount.com"]
+        "serviceAccount:service-org-1041583873210@security-center-api.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "iam.googleapis.com"
           method_selectors {
@@ -346,29 +346,29 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           }
           method_selectors {
             method = "IAM.GetRole"
-          }         
+          }
         }
         operations {
-          service_name = "pubsub.googleapis.com"   
+          service_name = "pubsub.googleapis.com"
           method_selectors {
             method = "Publisher.GetTopic"
-          } 
+          }
           method_selectors {
             method = "Subscriber.Acknowledge"
-          } 
+          }
           method_selectors {
             method = "Subscriber.GetSubscription"
-          }           
+          }
           method_selectors {
             method = "Subscriber.Pull"
-          } 
+          }
         }
         operations {
-          service_name = "compute.googleapis.com" 
+          service_name = "compute.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }        
+        }
       }
     }
 
@@ -376,15 +376,15 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-835] Kubernetes DNS"
       ingress_from {
         identities = ["serviceAccount:svc-externaldns@devint-gke-778534.iam.gserviceaccount.com",
-                      "serviceAccount:svc-externaldns@prod-gke-867530.iam.gserviceaccount.com",
-                      "serviceAccount:svc-externaldns@systest-gke-543261.iam.gserviceaccount.com",
-                      "serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
+          "serviceAccount:svc-externaldns@prod-gke-867530.iam.gserviceaccount.com",
+          "serviceAccount:svc-externaldns@systest-gke-543261.iam.gserviceaccount.com",
+        "serviceAccount:bhiselasticagent@prod-gcp-378519.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "dns.googleapis.com"
           method_selectors {
@@ -403,7 +403,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "iam.googleapis.com"
           method_selectors {
@@ -417,15 +417,15 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-840] Sailpoint AlloyDB"
       ingress_from {
         identities = ["serviceAccount:svc-sailpoint@prod-gcp-378519.iam.gserviceaccount.com",
-                      "serviceAccount:svc-sailpoint@staging-gcp-378519.iam.gserviceaccount.com",
-                      "serviceAccount:svc-sailpoint@systest-gcp-537851.iam.gserviceaccount.com",
-                      "serviceAccount:svc-sailpoint@vaulted-circle-378519.iam.gserviceaccount.com"]
+          "serviceAccount:svc-sailpoint@staging-gcp-378519.iam.gserviceaccount.com",
+          "serviceAccount:svc-sailpoint@systest-gcp-537851.iam.gserviceaccount.com",
+        "serviceAccount:svc-sailpoint@vaulted-circle-378519.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "alloydb.googleapis.com"
           method_selectors {
@@ -444,19 +444,19 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
-          service_name = "bigquery.googleapis.com" 
+          service_name = "bigquery.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }  
+        }
         operations {
-          service_name = "composer.googleapis.com" 
+          service_name = "composer.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }        
+        }
       }
     }
 
@@ -464,23 +464,23 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "Compute Default Service Account Log Writing"
       ingress_from {
         identities = ["serviceAccount:244108982333-compute@developer.gserviceaccount.com",
-                      "serviceAccount:290563624452-compute@developer.gserviceaccount.com",
-                      "serviceAccount:306119004471-compute@developer.gserviceaccount.com",
-                      "serviceAccount:681959470788-compute@developer.gserviceaccount.com",
-                      "serviceAccount:787344780781-compute@developer.gserviceaccount.com",
-                      "serviceAccount:940795332954-compute@developer.gserviceaccount.com"]
+          "serviceAccount:290563624452-compute@developer.gserviceaccount.com",
+          "serviceAccount:306119004471-compute@developer.gserviceaccount.com",
+          "serviceAccount:681959470788-compute@developer.gserviceaccount.com",
+          "serviceAccount:787344780781-compute@developer.gserviceaccount.com",
+        "serviceAccount:940795332954-compute@developer.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
-          service_name = "logging.googleapis.com" 
+          service_name = "logging.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -488,19 +488,19 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "[INF-843] Hadoopdash"
       ingress_from {
         identities = ["serviceAccount:hadoopdash-api@prod-gcp-378519.iam.gserviceaccount.com",
-                      "serviceAccount:hadoopdash-api@vaulted-circle-378519.iam.gserviceaccount.com"]
+        "serviceAccount:hadoopdash-api@vaulted-circle-378519.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
-          service_name = "composer.googleapis.com" 
+          service_name = "composer.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -513,13 +513,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
-          service_name = "serviceusage.googleapis.com" 
+          service_name = "serviceusage.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }       
+        }
       }
     }
 
@@ -532,13 +532,13 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
-          service_name = "pubsub.googleapis.com" 
+          service_name = "pubsub.googleapis.com"
           method_selectors {
             method = "*"
           }
-        }        
+        }
       }
     }
 
@@ -551,14 +551,14 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "*"
         }
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "[INF-847] lro-asset-collector"
       ingress_from {
         identities = ["serviceAccount:lro-asset-collector@system.gserviceaccount.com"]
@@ -567,7 +567,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "dataproc.googleapis.com"
           method_selectors {
@@ -577,7 +577,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "[INF-848] spanner-infra-cmek-global cloudkms"
       ingress_from {
         identities = ["serviceAccount:spanner-infra-cmek-global@system.gserviceaccount.com"]
@@ -586,7 +586,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "cloudkms.googleapis.com"
           method_selectors {
@@ -605,7 +605,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "servicenetworking.googleapis.com"
           method_selectors {
@@ -615,7 +615,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "Service Account So VPC-SC Logging Always Works"
       ingress_from {
         identities = ["serviceAccount:service-org-1041583873210@gcp-sa-logging.iam.gserviceaccount.com"]
@@ -624,25 +624,25 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "*"
         }
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "All Human Users"
       ingress_from {
         identities = ["group:aa-Dev-AllUsers-Temp@surescripts-dev.qa",
-                      "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
-                      "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
+          "group:aa-Prod-AllUsers-Temp@ext.surescripts.com",
+        "group:gcp-grp-all-surescripts-gcp-users@surescripts.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "*"
         }
@@ -658,7 +658,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "pubsub.googleapis.com"
           method_selectors {
@@ -668,7 +668,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       }
     }
 
-   ingress_policies {
+    ingress_policies {
       title = "CloudZero"
       ingress_from {
         identities = ["serviceAccount:cloudzero-601403c4-04c9-4b92-8@prod-billing-data-ingest.iam.gserviceaccount.com"]
@@ -680,7 +680,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         #
         #  NEED TO ADD projects/705515732372 AS A TARGET
         #
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "bigquery.googleapis.com"
           method_selectors {
@@ -688,7 +688,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
           }
           method_selectors {
             permission = "bigquery.tables.getData"
-          }          
+          }
         }
       }
     }
@@ -697,14 +697,14 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
       title = "NetApp CMEK Access"
       ingress_from {
         identities = ["serviceAccount:n-cmek-usce1-212304910690@netapp-cmek-prod.iam.gserviceaccount.com",
-                      "serviceAccount:n-cmek-usce1-244108982333@netapp-cmek-prod.iam.gserviceaccount.com",
-                      "serviceAccount:n-cmek-usce1-306119004471@netapp-cmek-prod.iam.gserviceaccount.com"]
+          "serviceAccount:n-cmek-usce1-244108982333@netapp-cmek-prod.iam.gserviceaccount.com",
+        "serviceAccount:n-cmek-usce1-306119004471@netapp-cmek-prod.iam.gserviceaccount.com"]
         sources {
           access_level = "*"
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "cloudkms.googleapis.com"
           method_selectors {
@@ -723,7 +723,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
         }
       }
       ingress_to {
-        resources = ["*"]        
+        resources = ["*"]
         operations {
           service_name = "serviceusage.googleapis.com"
           method_selectors {
