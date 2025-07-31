@@ -29,6 +29,6 @@ resource "google_iap_tunnel_iam_member" "allow-remote-access-to-iap" {
   condition {
     title       = "allow_remote_access_to_iap"
     description = "Allow access to IAP tunnel for authorized users"
-    expression  = "\"accessPolicies/686487341936/accessLevels/US-GEO\" in request.auth.access_levels"
+    expression  = "\"accessPolicies/686487341936/accessLevels/usgeo\" in request.auth.access_levels"
   }
 }
