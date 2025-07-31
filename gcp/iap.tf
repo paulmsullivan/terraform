@@ -11,7 +11,8 @@ title = "secure-iap-access-level"
 description = "This access level lists the authorised network addresses"
 basic {
 conditions {
-        region = ["US"]}
+        region = ["US"]
+}
     }
 }
 
