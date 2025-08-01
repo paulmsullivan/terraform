@@ -15,7 +15,7 @@ resource "google_access_context_manager_access_level" "access-level2" {
     }
     vpc_network_sources {
       vpc_subnetwork {
-        network = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
+        network_url = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
       }
     }
     combining_function = "OR"
