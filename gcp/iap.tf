@@ -9,7 +9,8 @@ module "new_us_geo_access_level" {
   policy      = "686487341936"
   name        = "us_geo_access_level"
   description = "US Region and Our VPCs"
-  regions = ["US"]
+#  regions = ["US"]
+  required_access_levels = ["accessPolicies/686487341936/accessLevels/usregion"]
   combining_function = "OR"
   vpc_network_sources = {
     "vpc_labvms" = {
