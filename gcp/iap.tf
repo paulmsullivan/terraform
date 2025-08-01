@@ -13,6 +13,8 @@ resource "google_access_context_manager_access_level" "access-level" {
     combining_function = "OR"
     conditions {
       regions = ["US"]
+     }
+    conditions {
       vpc_network_sources = ["projects/cogent-dragon-379819/global/networks/paullab-vpc"]
     }
   }
