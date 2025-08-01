@@ -4,20 +4,24 @@
 # a conditional IAM policy to restrict access
 # to authorised users coming from authorised networks
 
-module "new_us_geo_access_level" {
-  source      = "terraform-google-modules/vpc-service-controls/google//modules/access_level"
-  policy      = "686487341936"
-  name        = "us_geo_access_level"
-  description = "US Region and Our VPCs"
-#  regions = ["US"]
-  required_access_levels = ["accessPolicies/686487341936/accessLevels/usregion"]
-  combining_function = "OR"
+resource "google_access_context_manager_access_level" "access-level" {
+  parent      = "accessPolicies/686487341936"
+  name        = "accessPolicies/686487341936/accessLevels/usregion"
+  title       = "us-or-vpcs"
+  description = "This access level lists the authorised network addresses"
+  basic {
+    conditions {
+      regions = ["US"]
+     }
+  }
   vpc_network_sources = {
     "vpc_labvms" = {
       network_id = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
     }
   }
+  combining_function = "OR"
 }
+
 
 resource "google_access_context_manager_access_level" "access-level" {
   parent      = "accessPolicies/686487341936"
