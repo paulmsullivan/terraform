@@ -10,8 +10,10 @@ resource "google_access_context_manager_access_level" "access-level" {
   title       = "from_us_region"
   description = "This access level lists the authorised network addresses"
   basic {
+    combining_function = "OR"
     conditions {
       regions = ["US"]
+      vpc_network_sources = ["projects/cogent-dragon-379819/global/networks/paullab-vpc"]
     }
   }
 }
