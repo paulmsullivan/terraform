@@ -14,7 +14,7 @@ resource "google_access_context_manager_access_level" "access-level2" {
       regions = ["US"]
       vpc_network_sources {
         vpc_subnetwork {
-          network = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
+          network = "//compute.googleapis.com/projects/cogent-dragon-379819/global/networks/paullab-vpc"
         }
       }
     }
