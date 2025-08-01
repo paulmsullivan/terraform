@@ -6,7 +6,7 @@
 
 resource "google_access_context_manager_access_level" "access-level" {
   parent      = "accessPolicies/686487341936"
-  name        = "accessPolicies/686487341936/accessLevels/usregion"
+  name        = "accessPolicies/686487341936/accessLevels/usregion2"
   title       = "us-or-vpcs"
   description = "This access level lists the authorised network addresses"
   basic {
