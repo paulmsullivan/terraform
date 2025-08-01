@@ -12,12 +12,13 @@ resource "google_access_context_manager_access_level" "access-level2" {
   basic {
     conditions {
       regions = ["US"]
-    }
-    vpc_network_sources {
-      vpc_subnetwork {
-        network_url = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
+      vpc_network_sources {
+        vpc_subnetwork {
+          network_url = "projects/cogent-dragon-379819/global/networks/paullab-vpc"
+        }
       }
     }
+
     combining_function = "OR"
   }
 
