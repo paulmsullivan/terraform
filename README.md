@@ -1,5 +1,4 @@
 # terraform
-# TESTING
 
 
 ## Install Terraform
