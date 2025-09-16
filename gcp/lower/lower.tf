@@ -42,7 +42,7 @@ resource "google_folder" "lower" {
 
 resource "google_project" "lowerproject" {
     name            = "lowerproject"
-    project_id      = "lowerproject"
+    project_id      = "lowerproject-876584"
     billing_account = var.gcp-billing-account
     folder_id       = google_folder.lower.name
     auto_create_network = false
