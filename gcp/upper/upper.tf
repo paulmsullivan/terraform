@@ -33,7 +33,7 @@ resource "google_folder" "upper" {
 
 resource "google_project" "upperproject" {
     name            = "upperproject"
-    project_id      = "upperproject"
+    project_id      = "upperproject-876486"
     billing_account = var.gcp-billing-account
     folder_id       = google_folder.upper.name
     auto_create_network = false
