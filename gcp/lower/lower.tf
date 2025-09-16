@@ -1,3 +1,39 @@
+#
+# updated comments - updated again
+#
+terraform {
+  cloud {
+    organization = "paulmsullivan"
+
+    workspaces {
+      name = "gcp-lab-lower"
+    }
+  }
+}
+
+variable "gcp-creds" {
+  type    = string
+  default = ""
+}
+
+variable "gcp-billing-account" {
+  type    = string
+  default = ""
+}
+
+#
+# Credentials for Terraform to auth to GCP for operations.
+# The values set here will be inherited by the resources
+# below such as "project","region","zone"
+#
+provider "google" {
+  credentials = var.gcp-creds
+  project     = "cogent-dragon-379819"
+  region      = "us-central1"
+  zone        = "us-central1-c"
+}
+
+
 
 resource "google_folder" "lower" {
   display_name = "Lower"
