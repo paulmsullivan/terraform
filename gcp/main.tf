@@ -165,7 +165,7 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
 #}
 
 resource "google_organization_policy" "serial_port_policy" {
-  org_id     = "987000039256"
+  org_id     = var.org_id
   constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
 
   boolean_policy {
