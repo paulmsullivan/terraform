@@ -28,6 +28,12 @@ provider "google" {
   zone        = "us-central1-c"
 }
 
+# Folder with a tag
+resource "google_folder" "lower" {
+  display_name = "Lower"
+  parent       = "organizations/${var.org_id}"
+}
+
 resource "google_project_service" "project" {
   service = "iam.googleapis.com"
 
@@ -165,7 +171,7 @@ resource "google_compute_disk_resource_policy_attachment" "attachment" {
 #}
 
 resource "google_organization_policy" "serial_port_policy" {
-  org_id     = "987000039256"
+  org_id     = var.org_id
   constraint = "compute.setNewProjectDefaultToZonalDNSOnly"
 
   boolean_policy {
