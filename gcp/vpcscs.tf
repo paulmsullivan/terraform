@@ -31,7 +31,7 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
     restricted_services = ["storage.googleapis.com"]
 
     egress_policies {
- 
+    }
 
   } # end of status block
 
