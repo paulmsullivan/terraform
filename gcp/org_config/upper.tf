@@ -7,7 +7,7 @@ resource "google_folder" "upper" {
 resource "google_project" "upperproject" {
     name            = "upperproject"
     project_id      = "upperproject"
-    billing_account = var.billing_account
+    billing_account = var.gcp-billing-account
     folder_id       = google_folder.upper.name
     auto_create_network = false
 }
