@@ -10,4 +10,5 @@ resource "google_project" "lowerproject" {
     billing_account = var.gcp-billing-account
     folder_id       = google_folder.lower.name
     auto_create_network = false
+    deletion_policy = "DELETE"
 }
