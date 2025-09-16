@@ -11,7 +11,7 @@ terraform {
   }
 }
 
-variable "gcp-creds" {
+variable "gcp-cred" {
   type    = string
   default = ""
 }
@@ -27,7 +27,7 @@ variable "gcp-billing-account" {
 # below such as "project","region","zone"
 #
 provider "google" {
-  credentials = var.gcp-creds
+  credentials = var.gcp-cred
   project     = "cogent-dragon-379819"
   region      = "us-central1"
   zone        = "us-central1-c"
