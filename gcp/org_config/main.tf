@@ -6,7 +6,7 @@ terraform {
     organization = "paulmsullivan"
 
     workspaces {
-      name = "gcp-lab"
+      name = "gcp-lab-org"
     }
   }
 }
