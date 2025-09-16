@@ -28,12 +28,6 @@ provider "google" {
   zone        = "us-central1-c"
 }
 
-# Folder with a tag
-resource "google_folder" "lower" {
-  display_name = "Lower"
-  parent       = "organizations/${var.org_id}"
-}
-
 resource "google_project_service" "project" {
   service = "iam.googleapis.com"
 
